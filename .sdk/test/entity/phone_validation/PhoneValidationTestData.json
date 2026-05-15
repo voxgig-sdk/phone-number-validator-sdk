@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "phone_validation": {
+      "PHONE_VALIDATION00": {
+        "carrier": "s5a",
+        "country_code": "s5b",
+        "country_name": "s5c",
+        "country_prefix": "s5d",
+        "international_format": "s5e",
+        "line_type": "s5f",
+        "local_format": "s60",
+        "number": "s61",
+        "valid": true,
+        "phone_number": "PHONE_NUMBER01"
+      },
+      "PHONE_VALIDATION01": {
+        "carrier": "sb4",
+        "country_code": "sb5",
+        "country_name": "sb6",
+        "country_prefix": "sb7",
+        "international_format": "sb8",
+        "line_type": "sb9",
+        "local_format": "sba",
+        "number": "sbb",
+        "valid": true,
+        "phone_number": "PHONE_NUMBER01"
+      },
+      "PHONE_VALIDATION02": {
+        "carrier": "s10e",
+        "country_code": "s10f",
+        "country_name": "s110",
+        "country_prefix": "s111",
+        "international_format": "s112",
+        "line_type": "s113",
+        "local_format": "s114",
+        "number": "s115",
+        "valid": true,
+        "phone_number": "PHONE_NUMBER01"
+      }
+    }
+  },
+  "new": {
+    "phone_validation": {
+      "phone_validation_ref01": {
+        "carrier": "s168",
+        "country_code": "s169",
+        "country_name": "s16a",
+        "country_prefix": "s16b",
+        "international_format": "s16c",
+        "line_type": "s16d",
+        "local_format": "s16e",
+        "number": "s16f",
+        "valid": true
+      }
+    }
+  }
+}

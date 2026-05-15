@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "API Support"
+        url: "https://api.numlookupapi.com"
+      }
+      description: "This API validates phone numbers, providing details such as the local and international format. It identifies the country, carrier, and line type for the given number, ensuring accurate communication."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.numlookupapi.com/v1"
+        }
+      ]
+      title: "Phone Number Validator"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

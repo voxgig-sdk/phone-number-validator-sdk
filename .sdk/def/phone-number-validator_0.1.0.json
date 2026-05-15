@@ -1,0 +1,209 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Phone Number Validator",
+    "description": "This API validates phone numbers, providing details such as the local and international format. It identifies the country, carrier, and line type for the given number, ensuring accurate communication.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "API Support",
+      "url": "https://api.numlookupapi.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.numlookupapi.com/v1",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/validate/{phone_number}": {
+      "get": {
+        "summary": "Validate phone number",
+        "description": "Validates a phone number and returns details such as local and international format, country information, carrier, and line type.",
+        "operationId": "validatePhoneNumber",
+        "tags": [
+          "Phone Validation"
+        ],
+        "parameters": [
+          {
+            "name": "phone_number",
+            "in": "path",
+            "required": true,
+            "description": "The phone number to validate",
+            "schema": {
+              "type": "string"
+            },
+            "example": "01613950781"
+          },
+          {
+            "name": "apikey",
+            "in": "query",
+            "required": true,
+            "description": "API key for authentication",
+            "schema": {
+              "type": "string"
+            },
+            "example": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm"
+          },
+          {
+            "name": "country_code",
+            "in": "query",
+            "required": false,
+            "description": "Two-letter ISO country code to help with validation",
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "example": "BD"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful validation response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "valid": {
+                      "type": "boolean",
+                      "description": "Whether the phone number is valid"
+                    },
+                    "number": {
+                      "type": "string",
+                      "description": "The original phone number"
+                    },
+                    "local_format": {
+                      "type": "string",
+                      "description": "Phone number in local format"
+                    },
+                    "international_format": {
+                      "type": "string",
+                      "description": "Phone number in international format"
+                    },
+                    "country_code": {
+                      "type": "string",
+                      "description": "ISO country code"
+                    },
+                    "country_name": {
+                      "type": "string",
+                      "description": "Name of the country"
+                    },
+                    "country_prefix": {
+                      "type": "string",
+                      "description": "Country dialing prefix"
+                    },
+                    "carrier": {
+                      "type": "string",
+                      "description": "Name of the carrier/operator"
+                    },
+                    "line_type": {
+                      "type": "string",
+                      "description": "Type of phone line (mobile, landline, etc.)"
+                    }
+                  }
+                },
+                "example": {
+                  "valid": true,
+                  "number": "01613950781",
+                  "local_format": "01613950781",
+                  "international_format": "+8801613950781",
+                  "country_code": "BD",
+                  "country_name": "Bangladesh",
+                  "country_prefix": "+880",
+                  "carrier": "Grameenphone",
+                  "line_type": "mobile"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid phone number format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests - Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "apikey",
+        "description": "API key for authentication. Obtain from https://api.numlookupapi.com"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Phone Validation",
+      "description": "Operations for validating phone numbers"
+    }
+  ]
+}

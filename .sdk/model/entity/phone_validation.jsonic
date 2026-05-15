@@ -1,0 +1,123 @@
+# Entity: phone_validation
+
+main: kit: entity: phone_validation: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "carrier"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country_code"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country_prefix"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "international_format"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "line_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "local_format"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "number"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "valid"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "phone_validation"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "01613950781"
+                kind: "param"
+                name: "phone_number"
+                orig: "phone_number"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm"
+                kind: "query"
+                name: "apikey"
+                orig: "apikey"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "BD"
+                kind: "query"
+                name: "country_code"
+                orig: "country_code"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/validate/{phone_number}"
+          parts: [
+            "validate"
+            "{phone_number}"
+          ]
+          select: {
+            exist: [
+              "apikey"
+              "country_code"
+              "phone_number"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "validate"
+      ]
+    ]
+  }
+
+
+
+}
