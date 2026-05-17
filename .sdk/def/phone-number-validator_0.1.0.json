@@ -37,7 +37,7 @@
           },
           {
             "name": "apikey",
-            "in": "query",
+            "in": "header",
             "required": true,
             "description": "API key for authentication",
             "schema": {
@@ -194,7 +194,7 @@
     "securitySchemes": {
       "ApiKeyAuth": {
         "type": "apiKey",
-        "in": "query",
+        "in": "header",
         "name": "apikey",
         "description": "API key for authentication. Obtain from https://api.numlookupapi.com"
       }

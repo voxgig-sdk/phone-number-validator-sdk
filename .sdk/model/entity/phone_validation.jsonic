@@ -59,6 +59,16 @@ main: kit: entity: phone_validation: {
       points: [
         {
           args: {
+            header: [
+              {
+                example: "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm"
+                kind: "header"
+                name: "apikey"
+                orig: "apikey"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
             params: [
               {
                 example: "01613950781"
@@ -70,14 +80,6 @@ main: kit: entity: phone_validation: {
               }
             ]
             query: [
-              {
-                example: "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm"
-                kind: "query"
-                name: "apikey"
-                orig: "apikey"
-                reqd: true
-                type: "`$STRING`"
-              }
               {
                 example: "BD"
                 kind: "query"

@@ -104,6 +104,17 @@ class PhoneNumberValidatorConfig
               'points' => [
                 [
                   'args' => [
+                    'header' => [
+                      [
+                        'example' => 'num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm',
+                        'kind' => 'header',
+                        'name' => 'apikey',
+                        'orig' => 'apikey',
+                        'reqd' => true,
+                        'type' => '`$STRING`',
+                        'active' => true,
+                      ],
+                    ],
                     'params' => [
                       [
                         'example' => '01613950781',
@@ -116,15 +127,6 @@ class PhoneNumberValidatorConfig
                       ],
                     ],
                     'query' => [
-                      [
-                        'example' => 'num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm',
-                        'kind' => 'query',
-                        'name' => 'apikey',
-                        'orig' => 'apikey',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                        'active' => true,
-                      ],
                       [
                         'example' => 'BD',
                         'kind' => 'query',

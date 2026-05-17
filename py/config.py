@@ -99,6 +99,17 @@ def make_config():
             "points": [
               {
                 "args": {
+                  "header": [
+                    {
+                      "example": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
+                      "kind": "header",
+                      "name": "apikey",
+                      "orig": "apikey",
+                      "reqd": True,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                  ],
                   "params": [
                     {
                       "example": "01613950781",
@@ -111,15 +122,6 @@ def make_config():
                     },
                   ],
                   "query": [
-                    {
-                      "example": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
-                      "kind": "query",
-                      "name": "apikey",
-                      "orig": "apikey",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                      "active": True,
-                    },
                     {
                       "example": "BD",
                       "kind": "query",

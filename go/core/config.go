@@ -98,6 +98,17 @@ func MakeConfig() map[string]any {
 						"points": []any{
 							map[string]any{
 								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"example": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
+											"kind": "header",
+											"name": "apikey",
+											"orig": "apikey",
+											"reqd": true,
+											"type": "`$STRING`",
+											"active": true,
+										},
+									},
 									"params": []any{
 										map[string]any{
 											"example": "01613950781",
@@ -110,15 +121,6 @@ func MakeConfig() map[string]any {
 										},
 									},
 									"query": []any{
-										map[string]any{
-											"example": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
-											"kind": "query",
-											"name": "apikey",
-											"orig": "apikey",
-											"reqd": true,
-											"type": "`$STRING`",
-											"active": true,
-										},
 										map[string]any{
 											"example": "BD",
 											"kind": "query",

@@ -18,7 +18,6 @@ class PhoneValidationDirectTest < Minitest::Test
     params = {}
     query = {}
     if setup[:live]
-      query["apikey"] = "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm"
       params["phone_number"] = "01613950781"
     else
       params["phone_number"] = "direct01"
