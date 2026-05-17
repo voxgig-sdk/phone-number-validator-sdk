@@ -11,7 +11,8 @@
         "local_format": "s60",
         "number": "s61",
         "valid": true,
-        "phone_number": "PHONE_NUMBER01"
+        "phone_number": "PHONE_NUMBER01",
+        "id": "PHONE_VALIDATION00"
       },
       "PHONE_VALIDATION01": {
         "carrier": "sb4",
@@ -23,7 +24,8 @@
         "local_format": "sba",
         "number": "sbb",
         "valid": true,
-        "phone_number": "PHONE_NUMBER01"
+        "phone_number": "PHONE_NUMBER01",
+        "id": "PHONE_VALIDATION01"
       },
       "PHONE_VALIDATION02": {
         "carrier": "s10e",
@@ -35,7 +37,8 @@
         "local_format": "s114",
         "number": "s115",
         "valid": true,
-        "phone_number": "PHONE_NUMBER01"
+        "phone_number": "PHONE_NUMBER01",
+        "id": "PHONE_VALIDATION02"
       }
     }
   },

@@ -1,10 +1,10 @@
 package voxgigphonenumbervalidatorsdk
 
 import (
-	"github.com/voxgig-sdk/phone-number-validator-sdk/core"
-	"github.com/voxgig-sdk/phone-number-validator-sdk/entity"
-	"github.com/voxgig-sdk/phone-number-validator-sdk/feature"
-	_ "github.com/voxgig-sdk/phone-number-validator-sdk/utility"
+	"github.com/voxgig-sdk/phone-number-validator-sdk/go/core"
+	"github.com/voxgig-sdk/phone-number-validator-sdk/go/entity"
+	"github.com/voxgig-sdk/phone-number-validator-sdk/go/feature"
+	_ "github.com/voxgig-sdk/phone-number-validator-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

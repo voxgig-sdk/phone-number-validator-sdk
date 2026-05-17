@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/phone-number-validator-sdk/core"
+	"github.com/voxgig-sdk/phone-number-validator-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

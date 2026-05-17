@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/phone-number-validator-sdk"
-	"github.com/voxgig-sdk/phone-number-validator-sdk/core"
+	sdk "github.com/voxgig-sdk/phone-number-validator-sdk/go"
+	"github.com/voxgig-sdk/phone-number-validator-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/phone-number-validator-sdk/go/utility/struct"
 )
 
 func TestPhoneValidationEntity(t *testing.T) {

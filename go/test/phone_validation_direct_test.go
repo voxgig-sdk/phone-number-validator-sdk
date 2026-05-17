@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/phone-number-validator-sdk"
-	"github.com/voxgig-sdk/phone-number-validator-sdk/core"
+	sdk "github.com/voxgig-sdk/phone-number-validator-sdk/go"
+	"github.com/voxgig-sdk/phone-number-validator-sdk/go/core"
 )
 
 func TestPhoneValidationDirect(t *testing.T) {

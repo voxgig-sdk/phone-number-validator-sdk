@@ -3,9 +3,9 @@ package utility
 import (
 	"strings"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/phone-number-validator-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/phone-number-validator-sdk/core"
+	"github.com/voxgig-sdk/phone-number-validator-sdk/go/core"
 )
 
 func makeOptionsUtil(ctx *core.Context) map[string]any {

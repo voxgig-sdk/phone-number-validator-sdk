@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/phone-number-validator-sdk/core"
+import "github.com/voxgig-sdk/phone-number-validator-sdk/go/core"
 
 func resultHeadersUtil(ctx *core.Context) *core.Result {
 	response := ctx.Response

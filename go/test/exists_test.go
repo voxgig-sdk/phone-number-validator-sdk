@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/phone-number-validator-sdk"
+	sdk "github.com/voxgig-sdk/phone-number-validator-sdk/go"
 )
 
 func TestExists(t *testing.T) {

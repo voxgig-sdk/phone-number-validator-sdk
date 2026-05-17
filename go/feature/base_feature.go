@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/phone-number-validator-sdk/core"
+	"github.com/voxgig-sdk/phone-number-validator-sdk/go/core"
 )
 
 type BaseFeature struct {

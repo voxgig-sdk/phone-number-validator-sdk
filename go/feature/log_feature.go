@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/phone-number-validator-sdk/core"
+	"github.com/voxgig-sdk/phone-number-validator-sdk/go/core"
 )
 
 type LogFeature struct {

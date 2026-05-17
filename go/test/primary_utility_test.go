@@ -4,9 +4,9 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/phone-number-validator-sdk"
+	sdk "github.com/voxgig-sdk/phone-number-validator-sdk/go"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/phone-number-validator-sdk/go/utility/struct"
 )
 
 func TestPrimaryUtility(t *testing.T) {
