@@ -15,9 +15,6 @@ module PhoneNumberValidatorConfig
       },
       "options" => {
         "base" => "https://api.numlookupapi.com/v1",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

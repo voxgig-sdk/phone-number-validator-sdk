@@ -17,7 +17,17 @@
           }
         ],
         "title": "Phone Number Validator",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Validate phone numbers worldwide and retrieve carrier, location, and formatting details",
+        "homepage": "https://numlookupapi.com/",
+        "docs_url": "https://numlookupapi.com/docs",
+        "license_short": "Commercial API with free tier; check provider terms for usage limits",
+        "license_md": "- Provided by [NumLookupAPI](https://numlookupapi.com/) under their commercial terms of service\n- Free tier available (documented as 100 requests per month) with paid plans for higher volume\n- No open-source licence is published; consult the provider for redistribution or attribution requirements",
+        "about_md": "[NumLookupAPI](https://numlookupapi.com/) is a phone number validation and lookup service that cleans, verifies, and enriches phone numbers across 230+ countries. This SDK wraps the public validation endpoint exposed at `https://api.numlookupapi.com/v1`.\n\nWhat you get from the API:\n\n- Validity check for a submitted phone number\n- Local and international formatting variants\n- Country identification (name and code)\n- Carrier information where available\n- Line type classification (e.g. mobile vs landline)\n\nOperational notes:\n\n- Authentication is via an API key, accepted as either an `apikey` HTTP header or query parameter\n- CORS is enabled, so calls can be made from browser contexts\n- A free tier is offered (documented at 100 requests/month) with paid plans for higher volume; specific per-second rate limits are not published",
+        "entity_desc": {
+          "phone_validation": "Validates a phone number and returns formatting, country, carrier, and line-type information via `GET /v1/validate/{number}`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -25,7 +35,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "phone_validation": {

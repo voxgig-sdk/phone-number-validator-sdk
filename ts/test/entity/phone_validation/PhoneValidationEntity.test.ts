@@ -111,7 +111,6 @@ function basicSetup(extra?: any) {
     'PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID': idmap,
     'PHONE_NUMBER_VALIDATOR_TEST_LIVE': 'FALSE',
     'PHONE_NUMBER_VALIDATOR_TEST_EXPLAIN': 'FALSE',
-    'PHONE_NUMBER_VALIDATOR_APIKEY': 'NONE',
   })
 
   idmap = env['PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID']
@@ -121,7 +120,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new PhoneNumberValidatorSDK(merge([
       {
-        apikey: env.PHONE_NUMBER_VALIDATOR_APIKEY,
       },
       extra
     ]))
