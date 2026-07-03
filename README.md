@@ -1,26 +1,8 @@
 # PhoneNumberValidator SDK
 
-Validate phone numbers worldwide and retrieve carrier, location, and formatting details
+Phone Number Validator client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Phone Number Validator
-
-[NumLookupAPI](https://numlookupapi.com/) is a phone number validation and lookup service that cleans, verifies, and enriches phone numbers across 230+ countries. This SDK wraps the public validation endpoint exposed at `https://api.numlookupapi.com/v1`.
-
-What you get from the API:
-
-- Validity check for a submitted phone number
-- Local and international formatting variants
-- Country identification (name and code)
-- Carrier information where available
-- Line type classification (e.g. mobile vs landline)
-
-Operational notes:
-
-- Authentication is via an API key, accepted as either an `apikey` HTTP header or query parameter
-- CORS is enabled, so calls can be made from browser contexts
-- A free tier is offered (documented at 100 requests/month) with paid plans for higher volume; specific per-second rate limits are not published
 
 ## Try it
 
@@ -54,27 +36,31 @@ gem install phone-number-validator-sdk
 luarocks install phone-number-validator-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { PhoneNumberValidatorSDK } from 'phone-number-validator'
 
-const client = new PhoneNumberValidatorSDK({})
+const client = new PhoneNumberValidatorSDK({
+  apikey: process.env.PHONE-NUMBER-VALIDATOR_APIKEY,
+})
 
+// Load phonevalidation data
+const phonevalidation = await client.PhoneValidation().load({})
+console.log(phonevalidation.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -104,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **PhoneValidation** | Validates a phone number and returns formatting, country, carrier, and line-type information via `GET /v1/validate/{number}`. | `/validate/{phone_number}` |
+| **PhoneValidation** |  | `/validate/{phone_number}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -114,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from phonenumbervalidator_sdk import PhoneNumberValidatorSDK
 
-client = PhoneNumberValidatorSDK({})
+client = PhoneNumberValidatorSDK({
+    "apikey": os.environ.get("PHONE-NUMBER-VALIDATOR_APIKEY"),
+})
 
 
 # Load a specific phonevalidation
-phonevalidation, err = client.PhoneValidation(None).load(
-    {"id": "example_id"}, None
-)
+phonevalidation, err = client.PhoneValidation().load({"id": "example_id"})
+print(phonevalidation)
 ```
 
 ### PHP
@@ -131,13 +119,14 @@ phonevalidation, err = client.PhoneValidation(None).load(
 <?php
 require_once 'phonenumbervalidator_sdk.php';
 
-$client = new PhoneNumberValidatorSDK([]);
+$client = new PhoneNumberValidatorSDK([
+    "apikey" => getenv("PHONE-NUMBER-VALIDATOR_APIKEY"),
+]);
 
 
 // Load a specific phonevalidation
-[$phonevalidation, $err] = $client->PhoneValidation(null)->load(
-    ["id" => "example_id"], null
-);
+[$phonevalidation, $err] = $client->PhoneValidation()->load(["id" => "example_id"]);
+print_r($phonevalidation);
 ```
 
 ### Golang
@@ -145,8 +134,13 @@ $client = new PhoneNumberValidatorSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/phone-number-validator-sdk/go"
 
-client := sdk.NewPhoneNumberValidatorSDK(map[string]any{})
+client := sdk.NewPhoneNumberValidatorSDK(map[string]any{
+    "apikey": os.Getenv("PHONE-NUMBER-VALIDATOR_APIKEY"),
+})
 
+// Load phonevalidation data
+phonevalidation, err := client.PhoneValidation(nil).Load(map[string]any{}, nil)
+fmt.Println(phonevalidation)
 ```
 
 ### Ruby
@@ -154,13 +148,14 @@ client := sdk.NewPhoneNumberValidatorSDK(map[string]any{})
 ```ruby
 require_relative "PhoneNumberValidator_sdk"
 
-client = PhoneNumberValidatorSDK.new({})
+client = PhoneNumberValidatorSDK.new({
+  "apikey" => ENV["PHONE-NUMBER-VALIDATOR_APIKEY"],
+})
 
 
 # Load a specific phonevalidation
-phonevalidation, err = client.PhoneValidation(nil).load(
-  { "id" => "example_id" }, nil
-)
+phonevalidation, err = client.PhoneValidation().load({ "id" => "example_id" })
+puts phonevalidation
 ```
 
 ### Lua
@@ -168,13 +163,14 @@ phonevalidation, err = client.PhoneValidation(nil).load(
 ```lua
 local sdk = require("phone-number-validator_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("PHONE-NUMBER-VALIDATOR_APIKEY"),
+})
 
 
 -- Load a specific phonevalidation
-local phonevalidation, err = client:PhoneValidation(nil):load(
-  { id = "example_id" }, nil
-)
+local phonevalidation, err = client:PhoneValidation():load({ id = "example_id" })
+print(phonevalidation)
 ```
 
 ## Unit testing in offline mode
@@ -193,25 +189,21 @@ const result = await client.PhoneValidation().load({ id: 'test01' })
 ### Python
 
 ```python
-client = PhoneNumberValidatorSDK.test(None, None)
-result, err = client.PhoneValidation(None).load(
-    {"id": "test01"}, None
-)
+client = PhoneNumberValidatorSDK.test()
+result, err = client.PhoneValidation().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = PhoneNumberValidatorSDK::test(null, null);
-[$result, $err] = $client->PhoneValidation(null)->load(
-    ["id" => "test01"], null
-);
+$client = PhoneNumberValidatorSDK::test();
+[$result, $err] = $client->PhoneValidation()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.PhoneValidation(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -220,19 +212,15 @@ result, err := client.PhoneValidation(nil).Load(
 ### Ruby
 
 ```ruby
-client = PhoneNumberValidatorSDK.test(nil, nil)
-result, err = client.PhoneValidation(nil).load(
-  { "id" => "test01" }, nil
-)
+client = PhoneNumberValidatorSDK.test
+result, err = client.PhoneValidation().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:PhoneValidation(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:PhoneValidation():load({ id = "test01" })
 ```
 
 ## How it works
@@ -336,15 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Phone Number Validator
-
-- Upstream: [https://numlookupapi.com/](https://numlookupapi.com/)
-- API docs: [https://numlookupapi.com/docs](https://numlookupapi.com/docs)
-
-- Provided by [NumLookupAPI](https://numlookupapi.com/) under their commercial terms of service
-- Free tier available (documented as 100 requests per month) with paid plans for higher volume
-- No open-source licence is published; consult the provider for redistribution or attribution requirements
 
 ---
 

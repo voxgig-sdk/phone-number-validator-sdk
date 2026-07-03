@@ -91,6 +91,7 @@ function phone_validation_basic_setup(extra)
     ["PHONENUMBERVALIDATOR_TEST_PHONE_VALIDATION_ENTID"] = idmap,
     ["PHONENUMBERVALIDATOR_TEST_LIVE"] = "FALSE",
     ["PHONENUMBERVALIDATOR_TEST_EXPLAIN"] = "FALSE",
+    ["PHONENUMBERVALIDATOR_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ function phone_validation_basic_setup(extra)
   if env["PHONENUMBERVALIDATOR_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["PHONENUMBERVALIDATOR_APIKEY"],
       },
       extra or {},
     })

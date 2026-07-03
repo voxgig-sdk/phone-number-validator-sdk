@@ -66,12 +66,14 @@ def _phone_validation_direct_setup(mockres):
     env = runner.env_override({
         "PHONENUMBERVALIDATOR_TEST_PHONE_VALIDATION_ENTID": {},
         "PHONENUMBERVALIDATOR_TEST_LIVE": "FALSE",
+        "PHONENUMBERVALIDATOR_APIKEY": "NONE",
     })
 
     live = env.get("PHONENUMBERVALIDATOR_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("PHONENUMBERVALIDATOR_APIKEY"),
         }
         client = PhoneNumberValidatorSDK(merged_opts)
         return {

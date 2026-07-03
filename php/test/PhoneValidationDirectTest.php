@@ -75,12 +75,14 @@ function phone_validation_direct_setup($mockres)
     $env = Runner::env_override([
         "PHONENUMBERVALIDATOR_TEST_PHONE_VALIDATION_ENTID" => [],
         "PHONENUMBERVALIDATOR_TEST_LIVE" => "FALSE",
+        "PHONENUMBERVALIDATOR_APIKEY" => "NONE",
     ]);
 
     $live = $env["PHONENUMBERVALIDATOR_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["PHONENUMBERVALIDATOR_APIKEY"],
         ];
         $client = new PhoneNumberValidatorSDK($merged_opts);
         return [

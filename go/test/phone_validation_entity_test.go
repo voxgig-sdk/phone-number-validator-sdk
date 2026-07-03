@@ -117,6 +117,7 @@ func phone_validationBasicSetup(extra map[string]any) *entityTestSetup {
 		"PHONENUMBERVALIDATOR_TEST_PHONE_VALIDATION_ENTID": idmap,
 		"PHONENUMBERVALIDATOR_TEST_LIVE":      "FALSE",
 		"PHONENUMBERVALIDATOR_TEST_EXPLAIN":   "FALSE",
+		"PHONENUMBERVALIDATOR_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["PHONENUMBERVALIDATOR_TEST_PHONE_VALIDATION_ENTID"])
@@ -127,6 +128,7 @@ func phone_validationBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["PHONENUMBERVALIDATOR_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["PHONENUMBERVALIDATOR_APIKEY"],
 			},
 			extra,
 		})

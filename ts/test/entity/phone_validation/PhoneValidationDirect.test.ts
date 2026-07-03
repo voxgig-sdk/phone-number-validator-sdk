@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'PHONENUMBERVALIDATOR_TEST_PHONE_VALIDATION_ENTID': {},
     'PHONENUMBERVALIDATOR_TEST_LIVE': 'FALSE',
+    'PHONENUMBERVALIDATOR_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.PHONENUMBERVALIDATOR_TEST_LIVE
 
   if (live) {
     const client = new PhoneNumberValidatorSDK({
+      apikey: env.PHONENUMBERVALIDATOR_APIKEY,
     })
 
     let idmap: any = env['PHONENUMBERVALIDATOR_TEST_PHONE_VALIDATION_ENTID']
