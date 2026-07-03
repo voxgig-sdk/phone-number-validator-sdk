@@ -10,13 +10,13 @@ The Ruby SDK for the PhoneNumberValidator API — an entity-oriented client usin
 
 ## Install
 ```bash
-gem install phone-number-validator-sdk
+gem install voxgig-sdk-phone-number-validator
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "phone-number-validator-sdk"
+gem "voxgig-sdk-phone-number-validator"
 ```
 
 Then run:

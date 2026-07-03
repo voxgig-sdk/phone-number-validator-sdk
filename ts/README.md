@@ -10,7 +10,7 @@ The TypeScript SDK for the PhoneNumberValidator API — a type-safe, entity-orie
 
 ## Install
 ```bash
-npm install phone-number-validator
+npm install @voxgig-sdk/phone-number-validator
 ```
 ## Tutorial: your first API call
 

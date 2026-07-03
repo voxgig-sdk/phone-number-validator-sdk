@@ -10,7 +10,7 @@ The PHP SDK for the PhoneNumberValidator API — an entity-oriented client using
 
 ## Install
 ```bash
-composer require voxgig/phone-number-validator-sdk
+composer require voxgig-sdk/phone-number-validator
 ```
 
 

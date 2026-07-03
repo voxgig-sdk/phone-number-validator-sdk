@@ -10,7 +10,7 @@ The Lua SDK for the PhoneNumberValidator API — an entity-oriented client using
 
 ## Install
 ```bash
-luarocks install phone-number-validator-sdk
+luarocks install voxgig-sdk-phone-number-validator
 ```
 
 If the module is not yet published, add the source directory to

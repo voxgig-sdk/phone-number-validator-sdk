@@ -10,7 +10,7 @@ The Python SDK for the PhoneNumberValidator API — an entity-oriented client fo
 
 ## Install
 ```bash
-pip install phone-number-validator-sdk
+pip install voxgig-sdk-phone-number-validator
 ```
 
 Or install from source:
