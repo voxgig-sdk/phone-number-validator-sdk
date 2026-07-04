@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:phone_validation():list() / client:phone_validation():load({ id = ... })
+function PhoneNumberValidatorSDK:phone_validation(data)
+  local EntityMod = require("entity.phone_validation_entity")
+  if data == nil then
+    if self._phone_validation == nil then
+      self._phone_validation = EntityMod.new(self, nil)
+    end
+    return self._phone_validation
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:phone_validation() instead.
 function PhoneNumberValidatorSDK:PhoneValidation(data)
   local EntityMod = require("entity.phone_validation_entity")
   return EntityMod.new(self, data)

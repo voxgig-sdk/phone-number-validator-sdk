@@ -10,26 +10,26 @@ This is an unofficial SDK for the Phone Number Validator public API, generated b
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/phone-number-validator` | `npm install @voxgig-sdk/phone-number-validator` |
-| Python | `voxgig-sdk-phone-number-validator` | `pip install voxgig-sdk-phone-number-validator` |
-| PHP | `voxgig-sdk/phone-number-validator` | `composer require voxgig-sdk/phone-number-validator` |
-| Golang | `github.com/voxgig-sdk/phone-number-validator-sdk/go` | `go get github.com/voxgig-sdk/phone-number-validator-sdk/go` |
-| Ruby | `voxgig-sdk-phone-number-validator` | `gem install voxgig-sdk-phone-number-validator` |
-| Lua | `voxgig-sdk-phone-number-validator` | `luarocks install voxgig-sdk-phone-number-validator` |
+| TypeScript | `@voxgig-sdk/phone-number-validator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases) |
+| Python | `voxgig-sdk-phone-number-validator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases) |
+| PHP | `voxgig-sdk/phone-number-validator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/phone-number-validator-sdk/go` | `go get github.com/voxgig-sdk/phone-number-validator-sdk/go@latest` |
+| Ruby | `voxgig-sdk-phone-number-validator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases) |
+| Lua | `voxgig-sdk-phone-number-validator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases) |
 
 ## Quickstart
 
 ### TypeScript
 
 ```ts
-import { PhoneNumberValidatorSDK } from 'phone-number-validator'
+import { PhoneNumberValidatorSDK } from '@voxgig-sdk/phone-number-validator'
 
 const client = new PhoneNumberValidatorSDK({
-  apikey: process.env.PHONE-NUMBER-VALIDATOR_APIKEY,
+  apikey: process.env.PHONE_NUMBER_VALIDATOR_APIKEY,
 })
 
 // Load phonevalidation data
-const phonevalidation = await client.PhoneValidation().load({})
+const phonevalidation = await client.phonevalidation.load({})
 console.log(phonevalidation.data)
 ```
 
@@ -71,7 +71,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **PhoneValidation** |  | `/validate/{phone_number}` |
+| **PhoneValidation** | The PhoneValidation entity (load). | `/validate/{phone_number}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -85,12 +85,12 @@ import os
 from phonenumbervalidator_sdk import PhoneNumberValidatorSDK
 
 client = PhoneNumberValidatorSDK({
-    "apikey": os.environ.get("PHONE-NUMBER-VALIDATOR_APIKEY"),
+    "apikey": os.environ.get("PHONE_NUMBER_VALIDATOR_APIKEY"),
 })
 
 
 # Load a specific phonevalidation
-phonevalidation, err = client.PhoneValidation().load({"id": "example_id"})
+phonevalidation = client.phonevalidation.load({"id": "example_id"})
 print(phonevalidation)
 ```
 
@@ -101,12 +101,12 @@ print(phonevalidation)
 require_once 'phonenumbervalidator_sdk.php';
 
 $client = new PhoneNumberValidatorSDK([
-    "apikey" => getenv("PHONE-NUMBER-VALIDATOR_APIKEY"),
+    "apikey" => getenv("PHONE_NUMBER_VALIDATOR_APIKEY"),
 ]);
 
 
 // Load a specific phonevalidation
-[$phonevalidation, $err] = $client->PhoneValidation()->load(["id" => "example_id"]);
+$phonevalidation = $client->phonevalidation()->load(["id" => "example_id"]);
 print_r($phonevalidation);
 ```
 
@@ -116,7 +116,7 @@ print_r($phonevalidation);
 import sdk "github.com/voxgig-sdk/phone-number-validator-sdk/go"
 
 client := sdk.NewPhoneNumberValidatorSDK(map[string]any{
-    "apikey": os.Getenv("PHONE-NUMBER-VALIDATOR_APIKEY"),
+    "apikey": os.Getenv("PHONE_NUMBER_VALIDATOR_APIKEY"),
 })
 
 // Load phonevalidation data
@@ -130,12 +130,12 @@ fmt.Println(phonevalidation)
 require_relative "PhoneNumberValidator_sdk"
 
 client = PhoneNumberValidatorSDK.new({
-  "apikey" => ENV["PHONE-NUMBER-VALIDATOR_APIKEY"],
+  "apikey" => ENV["PHONE_NUMBER_VALIDATOR_APIKEY"],
 })
 
 
 # Load a specific phonevalidation
-phonevalidation, err = client.PhoneValidation().load({ "id" => "example_id" })
+phonevalidation = client.phonevalidation.load({ "id" => "example_id" })
 puts phonevalidation
 ```
 
@@ -145,12 +145,12 @@ puts phonevalidation
 local sdk = require("phone-number-validator_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("PHONE-NUMBER-VALIDATOR_APIKEY"),
+  apikey = os.getenv("PHONE_NUMBER_VALIDATOR_APIKEY"),
 })
 
 
 -- Load a specific phonevalidation
-local phonevalidation, err = client:PhoneValidation():load({ id = "example_id" })
+local phonevalidation, err = client:phonevalidation():load({ id = "example_id" })
 print(phonevalidation)
 ```
 
@@ -163,7 +163,7 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = PhoneNumberValidatorSDK.test()
-const result = await client.PhoneValidation().load({ id: 'test01' })
+const result = await client.phonevalidation.load({ id: 'test01' })
 // result.ok === true, result.data contains mock data
 ```
 
@@ -171,14 +171,14 @@ const result = await client.PhoneValidation().load({ id: 'test01' })
 
 ```python
 client = PhoneNumberValidatorSDK.test()
-result, err = client.PhoneValidation().load({"id": "test01"})
+result = client.phonevalidation.load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
 $client = PhoneNumberValidatorSDK::test();
-[$result, $err] = $client->PhoneValidation()->load(["id" => "test01"]);
+$result = $client->phonevalidation()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -194,14 +194,14 @@ result, err := client.PhoneValidation(nil).Load(
 
 ```ruby
 client = PhoneNumberValidatorSDK.test
-result, err = client.PhoneValidation().load({ "id" => "test01" })
+result = client.phonevalidation.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:PhoneValidation():load({ id = "test01" })
+local result, err = client:phonevalidation():load({ id = "test01" })
 ```
 
 ## How it works
@@ -254,7 +254,7 @@ console.log(result.data)
 
 **Python:**
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
@@ -263,7 +263,7 @@ result, err = client.direct({
 
 **PHP:**
 ```php
-[$result, $err] = $client->direct([
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
@@ -281,7 +281,7 @@ result, err := client.Direct(map[string]any{
 
 **Ruby:**
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },

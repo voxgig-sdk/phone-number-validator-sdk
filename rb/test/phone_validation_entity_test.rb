@@ -42,8 +42,7 @@ class PhoneValidationEntityTest < Minitest::Test
     # LOAD
     phone_validation_ref01_ent = client.PhoneValidation(nil)
     phone_validation_ref01_match_dt0 = {}
-    phone_validation_ref01_data_dt0_loaded, err = phone_validation_ref01_ent.load(phone_validation_ref01_match_dt0, nil)
-    assert_nil err
+    phone_validation_ref01_data_dt0_loaded = phone_validation_ref01_ent.load(phone_validation_ref01_match_dt0, nil)
     assert !phone_validation_ref01_data_dt0_loaded.nil?
 
   end

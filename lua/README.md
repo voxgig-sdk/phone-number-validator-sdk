@@ -9,12 +9,9 @@ The Lua SDK for the PhoneNumberValidator API — an entity-oriented client using
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-phone-number-validator
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("phone-number-validator_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("PHONE-NUMBER-VALIDATOR_APIKEY"),
+  apikey = os.getenv("PHONE_NUMBER_VALIDATOR_APIKEY"),
 })
 ```
 
 ### 3. Load a phonevalidation
 
 ```lua
-local result, err = client:PhoneValidation():load({ id = "example_id" })
+local result, err = client:phonevalidation():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:PhoneNumberValidator():load({ id = "test01" })
+local result, err = client:phonevalidation():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +117,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-PHONE-NUMBER-VALIDATOR_TEST_LIVE=TRUE
-PHONE-NUMBER-VALIDATOR_APIKEY=<your-key>
+PHONE_NUMBER_VALIDATOR_TEST_LIVE=TRUE
+PHONE_NUMBER_VALIDATOR_APIKEY=<your-key>
 ```
 
 Then run:
@@ -229,7 +226,7 @@ API path: `/validate/{phone_number}`
 
 ### PhoneValidation
 
-Create an instance: `const phone_validation = client.PhoneValidation()`
+Create an instance: `const phone_validation = client.phone_validation`
 
 #### Operations
 
@@ -254,7 +251,7 @@ Create an instance: `const phone_validation = client.PhoneValidation()`
 #### Example: Load
 
 ```ts
-const phone_validation = await client.PhoneValidation().load({ id: 'phone_validation_id' })
+const phone_validation = await client.phone_validation.load({ id: 'phone_validation_id' })
 ```
 
 
@@ -329,11 +326,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local phonevalidation = client:phonevalidation()
+phonevalidation:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- phonevalidation:data_get() now returns the loaded phonevalidation data
+-- phonevalidation:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

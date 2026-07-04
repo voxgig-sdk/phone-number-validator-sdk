@@ -49,8 +49,7 @@ class TestPhoneValidationEntity:
         # LOAD
         phone_validation_ref01_ent = client.PhoneValidation(None)
         phone_validation_ref01_match_dt0 = {}
-        phone_validation_ref01_data_dt0_loaded, err = phone_validation_ref01_ent.load(phone_validation_ref01_match_dt0, None)
-        assert err is None
+        phone_validation_ref01_data_dt0_loaded = phone_validation_ref01_ent.load(phone_validation_ref01_match_dt0, None)
         assert phone_validation_ref01_data_dt0_loaded is not None
 
 

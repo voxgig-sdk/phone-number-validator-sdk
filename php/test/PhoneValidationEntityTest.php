@@ -49,8 +49,7 @@ class PhoneValidationEntityTest extends TestCase
         // LOAD
         $phone_validation_ref01_ent = $client->PhoneValidation(null);
         $phone_validation_ref01_match_dt0 = [];
-        [$phone_validation_ref01_data_dt0_loaded, $err] = $phone_validation_ref01_ent->load($phone_validation_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $phone_validation_ref01_data_dt0_loaded = $phone_validation_ref01_ent->load($phone_validation_ref01_match_dt0, null);
         $this->assertNotNull($phone_validation_ref01_data_dt0_loaded);
 
     }

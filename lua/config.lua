@@ -120,6 +120,7 @@ local function make_config()
                       ["orig"] = "phone_number",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {

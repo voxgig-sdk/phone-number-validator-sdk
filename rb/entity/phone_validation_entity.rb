@@ -45,6 +45,7 @@ class PhoneValidationEntity
     end
   end
 
+  # @return [PhoneValidation, Hash] the current PhoneValidation data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class PhoneValidationEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of PhoneValidation fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single PhoneValidation.
+  #
+  # @param reqmatch [PhoneValidationLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [PhoneValidation, Hash] the loaded PhoneValidation; raises PhoneNumberValidatorError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

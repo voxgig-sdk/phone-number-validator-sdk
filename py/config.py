@@ -121,6 +121,7 @@ def make_config():
                       "orig": "phone_number",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [

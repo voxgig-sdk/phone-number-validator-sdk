@@ -110,7 +110,7 @@ Alias for `PhoneNumberValidatorSDK.test()`.
 ## PhoneValidationEntity
 
 ```ts
-const phone_validation = client.PhoneValidation()
+const phone_validation = client.phone_validation
 ```
 
 ### Fields
@@ -134,7 +134,7 @@ const phone_validation = client.PhoneValidation()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PhoneValidation().load({ id: 'phone_validation_id' })
+const result = await client.phone_validation.load({ id: 'phone_validation_id' })
 ```
 
 ### Common Methods

@@ -150,7 +150,8 @@ class Config {
                     "name": "phone_number",
                     "orig": "phone_number",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

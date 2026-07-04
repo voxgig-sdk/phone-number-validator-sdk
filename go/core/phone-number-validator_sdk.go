@@ -245,6 +245,9 @@ func (sdk *PhoneNumberValidatorSDK) Direct(fetchargs map[string]any) (map[string
 }
 
 
+// PhoneValidation returns a PhoneValidation entity bound to this client.
+// Idiomatic usage: client.PhoneValidation(nil).List(nil, nil) or
+// client.PhoneValidation(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PhoneNumberValidatorSDK) PhoneValidation(data map[string]any) PhoneNumberValidatorEntity {
 	return NewPhoneValidationEntityFunc(sdk, data)
 }

@@ -126,6 +126,7 @@ class PhoneNumberValidatorConfig
                         'orig' => 'phone_number',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [

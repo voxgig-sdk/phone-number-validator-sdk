@@ -84,7 +84,7 @@ same parameters as `direct()`.
 ## PhoneValidationEntity
 
 ```lua
-local phone_validation = client:PhoneValidation(nil)
+local phone_validation = client:phone_validation(nil)
 ```
 
 ### Fields
@@ -108,7 +108,7 @@ local phone_validation = client:PhoneValidation(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PhoneValidation():load({ id = "phone_validation_id" })
+local result, err = client:phone_validation():load({ id = "phone_validation_id" })
 ```
 
 ### Common Methods

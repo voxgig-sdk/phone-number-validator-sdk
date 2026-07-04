@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  PhoneValidation,
+  PhoneValidationLoadMatch,
+} from '../PhoneNumberValidatorTypes'
 
 // TODO: needs Entity superclass
-class PhoneValidationEntity extends PhoneNumberValidatorEntityBase {
+class PhoneValidationEntity extends PhoneNumberValidatorEntityBase<PhoneValidation> {
 
   constructor(client: PhoneNumberValidatorSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class PhoneValidationEntity extends PhoneNumberValidatorEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: PhoneValidationLoadMatch, ctrl?: Control): Promise<PhoneValidation> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class PhoneValidationEntity extends PhoneNumberValidatorEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<PhoneValidation> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
