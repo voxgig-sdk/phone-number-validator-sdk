@@ -208,13 +208,7 @@ class PhoneNumberValidatorSDK
   end
 
 
-  # Idiomatic facade: client.phone_validation.list / client.phone_validation.load({ "id" => ... })
-  def phone_validation
-    require_relative 'entity/phone_validation_entity'
-    @phone_validation ||= PhoneValidationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.phone_validation instead.
+  # Canonical facade: client.PhoneValidation.list / client.PhoneValidation.load({ "id" => ... })
   def PhoneValidation(data = nil)
     require_relative 'entity/phone_validation_entity'
     PhoneValidationEntity.new(self, data)

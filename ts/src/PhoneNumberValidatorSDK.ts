@@ -204,14 +204,7 @@ class PhoneNumberValidatorSDK {
 
 
 
-  _phone_validation?: PhoneValidationEntity
-
-  // Idiomatic facade: `client.phone_validation.list()` / `client.phone_validation.load({ id })`.
-  get phone_validation(): PhoneValidationEntity {
-    return (this._phone_validation ??= new PhoneValidationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.phone_validation` instead. */
+  // Entity access: `client.PhoneValidation().list()` / `client.PhoneValidation().load({ id })`.
   PhoneValidation(data?: any) {
     const self = this
     return new PhoneValidationEntity(self,data)

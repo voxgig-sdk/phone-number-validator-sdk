@@ -81,7 +81,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## PhoneValidationEntity
 
 ```python
-phone_validation = client.phone_validation
+phone_validation = client.PhoneValidation()
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ phone_validation = client.phone_validation
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.phone_validation.load({"id": "phone_validation_id"})
+result = client.PhoneValidation().load({"id": "phone_validation_id"})
 ```
 
 ### Common Methods

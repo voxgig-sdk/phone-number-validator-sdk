@@ -220,25 +220,15 @@ class PhoneNumberValidatorSDK:
         }
 
 
-    @property
-    def phone_validation(self):
-        """Idiomatic facade: client.phone_validation.list() / client.phone_validation.load({"id": ...})."""
-        from entity.phone_validation_entity import PhoneValidationEntity
-        cached = getattr(self, "_phone_validation", None)
-        if cached is None:
-            cached = PhoneValidationEntity(self, None)
-            self._phone_validation = cached
-        return cached
-
-    def PhoneValidation(self, data=None):
-        # Deprecated: use client.phone_validation instead.
+    def PhoneValidation(self, data=None) -> "PhoneValidationEntity":
+        """Entity factory: client.PhoneValidation().list({}) / client.PhoneValidation().load({"id": ...})."""
         from entity.phone_validation_entity import PhoneValidationEntity
         return PhoneValidationEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "PhoneNumberValidatorSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class PhoneNumberValidatorSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.phone_validation_entity import PhoneValidationEntity

@@ -35,9 +35,10 @@ $client = new PhoneNumberValidatorSDK([
 
 ```php
 try {
-    $result = $client->phonevalidation()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare PhoneValidation record (throws on error).
+    $phonevalidation = $client->PhoneValidation()->load(["id" => "example_id"]);
+    print_r($phonevalidation);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -83,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = PhoneNumberValidatorSDK::test();
+$client = PhoneNumberValidatorSDK::test([
+    "entity" => ["phonevalidation" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->phonevalidation()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$phonevalidation = $client->PhoneValidation()->load(["id" => "test01"]);
+print_r($phonevalidation);
 ```
 
 ### Use a custom fetch function
@@ -235,7 +240,7 @@ API path: `/validate/{phone_number}`
 
 ### PhoneValidation
 
-Create an instance: `const phone_validation = client.phone_validation`
+Create an instance: `$phone_validation = $client->PhoneValidation();`
 
 #### Operations
 
@@ -259,8 +264,9 @@ Create an instance: `const phone_validation = client.phone_validation`
 
 #### Example: Load
 
-```ts
-const phone_validation = await client.phone_validation.load({ id: 'phone_validation_id' })
+```php
+// load() returns the bare PhoneValidation record (throws on error).
+$phone_validation = $client->PhoneValidation()->load(["id" => "phone_validation_id"]);
 ```
 
 
@@ -335,7 +341,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$phonevalidation = $client->phonevalidation();
+$phonevalidation = $client->PhoneValidation();
 $phonevalidation->load(["id" => "example_id"]);
 
 // $phonevalidation->dataGet() now returns the loaded phonevalidation data

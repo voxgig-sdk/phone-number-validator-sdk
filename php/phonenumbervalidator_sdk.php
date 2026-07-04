@@ -233,10 +233,10 @@ class PhoneNumberValidatorSDK
 
     private $_phone_validation = null;
 
-    // Idiomatic facade: $client->phone_validation()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias PhoneValidation() (PHP method
-    // names are case-insensitive).
-    public function phone_validation($data = null)
+    // Canonical facade: $client->PhoneValidation()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->phone_validation()
+    // resolves here too.
+    public function PhoneValidation($data = null)
     {
         require_once __DIR__ . '/entity/phone_validation_entity.php';
         if ($data === null) {

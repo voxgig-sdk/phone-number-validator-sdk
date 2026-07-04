@@ -28,9 +28,9 @@ const client = new PhoneNumberValidatorSDK({
   apikey: process.env.PHONE_NUMBER_VALIDATOR_APIKEY,
 })
 
-// Load phonevalidation data
-const phonevalidation = await client.phonevalidation.load({})
-console.log(phonevalidation.data)
+// Load phonevalidation data (returns a PhoneValidation)
+const phonevalidation = await client.PhoneValidation().load()
+console.log(phonevalidation)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -89,8 +89,8 @@ client = PhoneNumberValidatorSDK({
 })
 
 
-# Load a specific phonevalidation
-phonevalidation = client.phonevalidation.load({"id": "example_id"})
+# Load a specific phonevalidation (returns the record, raises on error)
+phonevalidation = client.PhoneValidation().load({"id": "example_id"})
 print(phonevalidation)
 ```
 
@@ -105,8 +105,8 @@ $client = new PhoneNumberValidatorSDK([
 ]);
 
 
-// Load a specific phonevalidation
-$phonevalidation = $client->phonevalidation()->load(["id" => "example_id"]);
+// Load a specific phonevalidation (returns the bare record; throws on error)
+$phonevalidation = $client->PhoneValidation()->load(["id" => "example_id"]);
 print_r($phonevalidation);
 ```
 
@@ -134,8 +134,8 @@ client = PhoneNumberValidatorSDK.new({
 })
 
 
-# Load a specific phonevalidation
-phonevalidation = client.phonevalidation.load({ "id" => "example_id" })
+# Load a specific phonevalidation (returns the bare record; raises on error)
+phonevalidation = client.PhoneValidation.load({ "id" => "example_id" })
 puts phonevalidation
 ```
 
@@ -150,7 +150,7 @@ local client = sdk.new({
 
 
 -- Load a specific phonevalidation
-local phonevalidation, err = client:phonevalidation():load({ id = "example_id" })
+local phonevalidation, err = client:PhoneValidation():load({ id = "example_id" })
 print(phonevalidation)
 ```
 
@@ -163,22 +163,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = PhoneNumberValidatorSDK.test()
-const result = await client.phonevalidation.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const phonevalidation = await client.PhoneValidation().load({ id: 'test01' })
+// phonevalidation is a bare PhoneValidation populated with mock data
+console.log(phonevalidation)
 ```
 
 ### Python
 
 ```python
 client = PhoneNumberValidatorSDK.test()
-result = client.phonevalidation.load({"id": "test01"})
+phonevalidation = client.PhoneValidation().load({"id": "test01"})
+print(phonevalidation)
 ```
 
 ### PHP
 
 ```php
-$client = PhoneNumberValidatorSDK::test();
-$result = $client->phonevalidation()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = PhoneNumberValidatorSDK::test([
+    "entity" => ["phonevalidation" => ["test01" => ["id" => "test01"]]],
+]);
+$phonevalidation = $client->PhoneValidation()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -193,15 +198,18 @@ result, err := client.PhoneValidation(nil).Load(
 ### Ruby
 
 ```ruby
-client = PhoneNumberValidatorSDK.test
-result = client.phonevalidation.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = PhoneNumberValidatorSDK.test({
+  "entity" => { "phonevalidation" => { "test01" => { "id" => "test01" } } },
+})
+phonevalidation = client.PhoneValidation.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:phonevalidation():load({ id = "test01" })
+local result, err = client:PhoneValidation():load({ id = "test01" })
 ```
 
 ## How it works
@@ -249,6 +257,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

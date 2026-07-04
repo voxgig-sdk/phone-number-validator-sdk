@@ -36,10 +36,12 @@ client = PhoneNumberValidatorSDK({
 
 ### 3. Load a phonevalidation
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.phonevalidation.load({"id": "example_id"})
-    print(result)
+    phonevalidation = client.PhoneValidation().load({"id": "example_id"})
+    print(phonevalidation)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -87,8 +89,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = PhoneNumberValidatorSDK.test()
 
-result = client.phonevalidation.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+phonevalidation = client.PhoneValidation().load({"id": "test01"})
+# phonevalidation contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -231,7 +234,7 @@ API path: `/validate/{phone_number}`
 
 ### PhoneValidation
 
-Create an instance: `const phone_validation = client.phone_validation`
+Create an instance: `phone_validation = client.PhoneValidation()`
 
 #### Operations
 
@@ -255,8 +258,8 @@ Create an instance: `const phone_validation = client.phone_validation`
 
 #### Example: Load
 
-```ts
-const phone_validation = await client.phone_validation.load({ id: 'phone_validation_id' })
+```python
+phone_validation = client.PhoneValidation().load({"id": "phone_validation_id"})
 ```
 
 
@@ -330,7 +333,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-phonevalidation = client.phonevalidation
+phonevalidation = client.PhoneValidation()
 phonevalidation.load({"id": "example_id"})
 
 # phonevalidation.data_get() now returns the loaded phonevalidation data

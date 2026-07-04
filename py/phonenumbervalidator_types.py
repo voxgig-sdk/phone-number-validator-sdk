@@ -4,27 +4,29 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class PhoneValidation:
-    carrier: Optional[str] = None
-    country_code: Optional[str] = None
-    country_name: Optional[str] = None
-    country_prefix: Optional[str] = None
-    international_format: Optional[str] = None
-    line_type: Optional[str] = None
-    local_format: Optional[str] = None
-    number: Optional[str] = None
-    valid: Optional[bool] = None
+class PhoneValidation(TypedDict, total=False):
+    carrier: str
+    country_code: str
+    country_name: str
+    country_prefix: str
+    international_format: str
+    line_type: str
+    local_format: str
+    number: str
+    valid: bool
 
 
-@dataclass
-class PhoneValidationLoadMatch:
+class PhoneValidationLoadMatch(TypedDict):
     phone_number: str
-

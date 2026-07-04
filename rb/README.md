@@ -34,8 +34,9 @@ client = PhoneNumberValidatorSDK.new({
 
 ```ruby
 begin
-  result = client.phonevalidation.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare PhoneValidation record (raises on error).
+  phonevalidation = client.PhoneValidation.load({ "id" => "example_id" })
+  puts phonevalidation
 rescue => err
   warn "load failed: #{err}"
 end
@@ -82,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = PhoneNumberValidatorSDK.test
+client = PhoneNumberValidatorSDK.test({
+  "entity" => { "phonevalidation" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.phonevalidation.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+phonevalidation = client.PhoneValidation.load({ "id" => "test01" })
+puts phonevalidation
 ```
 
 ### Use a custom fetch function
@@ -230,7 +235,7 @@ API path: `/validate/{phone_number}`
 
 ### PhoneValidation
 
-Create an instance: `const phone_validation = client.phone_validation`
+Create an instance: `phone_validation = client.PhoneValidation`
 
 #### Operations
 
@@ -254,8 +259,9 @@ Create an instance: `const phone_validation = client.phone_validation`
 
 #### Example: Load
 
-```ts
-const phone_validation = await client.phone_validation.load({ id: 'phone_validation_id' })
+```ruby
+# load returns the bare PhoneValidation record (raises on error).
+phone_validation = client.PhoneValidation.load({ "id" => "phone_validation_id" })
 ```
 
 
@@ -330,7 +336,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-phonevalidation = client.phonevalidation
+phonevalidation = client.PhoneValidation
 phonevalidation.load({ "id" => "example_id" })
 
 # phonevalidation.data_get now returns the loaded phonevalidation data
