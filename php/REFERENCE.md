@@ -8,7 +8,7 @@ Complete API reference for the PhoneNumberValidator PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/phone-number-validator_sdk.php';
+require_once __DIR__ . '/phonenumbervalidator_sdk.php';
 
 $client = new PhoneNumberValidatorSDK($options);
 ```
@@ -46,11 +46,11 @@ $client = PhoneNumberValidatorSDK::test();
 
 Create a new `PhoneValidationEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): PhoneNumberValidatorUtility`
 
 Return a copy of the SDK utility object.
 
@@ -93,15 +93,15 @@ $phone_validation = $client->PhoneValidation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `carrier` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `country_name` | ``$STRING`` | No |  |
-| `country_prefix` | ``$STRING`` | No |  |
-| `international_format` | ``$STRING`` | No |  |
-| `line_type` | ``$STRING`` | No |  |
-| `local_format` | ``$STRING`` | No |  |
-| `number` | ``$STRING`` | No |  |
-| `valid` | ``$BOOLEAN`` | No |  |
+| `carrier` | `string` | No |  |
+| `country_code` | `string` | No |  |
+| `country_name` | `string` | No |  |
+| `country_prefix` | `string` | No |  |
+| `international_format` | `string` | No |  |
+| `line_type` | `string` | No |  |
+| `local_format` | `string` | No |  |
+| `number` | `string` | No |  |
+| `valid` | `bool` | No |  |
 
 ### Operations
 
@@ -110,24 +110,24 @@ $phone_validation = $client->PhoneValidation();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->PhoneValidation()->load(["id" => "phone_validation_id"]);
+$result = $client->PhoneValidation()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -136,7 +136,7 @@ Set the entity match criteria.
 Create a new `PhoneValidationEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

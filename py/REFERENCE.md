@@ -8,7 +8,7 @@ Complete API reference for the PhoneNumberValidator Python SDK.
 ### Constructor
 
 ```python
-from phone-number-validator_sdk import PhoneNumberValidatorSDK
+from phonenumbervalidator_sdk import PhoneNumberValidatorSDK
 
 client = PhoneNumberValidatorSDK(options)
 ```
@@ -88,15 +88,15 @@ phone_validation = client.PhoneValidation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `carrier` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `country_name` | ``$STRING`` | No |  |
-| `country_prefix` | ``$STRING`` | No |  |
-| `international_format` | ``$STRING`` | No |  |
-| `line_type` | ``$STRING`` | No |  |
-| `local_format` | ``$STRING`` | No |  |
-| `number` | ``$STRING`` | No |  |
-| `valid` | ``$BOOLEAN`` | No |  |
+| `carrier` | `str` | No |  |
+| `country_code` | `str` | No |  |
+| `country_name` | `str` | No |  |
+| `country_prefix` | `str` | No |  |
+| `international_format` | `str` | No |  |
+| `line_type` | `str` | No |  |
+| `local_format` | `str` | No |  |
+| `number` | `str` | No |  |
+| `valid` | `bool` | No |  |
 
 ### Operations
 
@@ -105,7 +105,7 @@ phone_validation = client.PhoneValidation()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.PhoneValidation().load({"id": "phone_validation_id"})
+result = client.PhoneValidation().load()
 ```
 
 ### Common Methods

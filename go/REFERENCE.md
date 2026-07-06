@@ -98,15 +98,15 @@ phone_validation := client.PhoneValidation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `carrier` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `country_name` | ``$STRING`` | No |  |
-| `country_prefix` | ``$STRING`` | No |  |
-| `international_format` | ``$STRING`` | No |  |
-| `line_type` | ``$STRING`` | No |  |
-| `local_format` | ``$STRING`` | No |  |
-| `number` | ``$STRING`` | No |  |
-| `valid` | ``$BOOLEAN`` | No |  |
+| `carrier` | `string` | No |  |
+| `country_code` | `string` | No |  |
+| `country_name` | `string` | No |  |
+| `country_prefix` | `string` | No |  |
+| `international_format` | `string` | No |  |
+| `line_type` | `string` | No |  |
+| `local_format` | `string` | No |  |
+| `number` | `string` | No |  |
+| `valid` | `bool` | No |  |
 
 ### Operations
 
@@ -115,7 +115,7 @@ phone_validation := client.PhoneValidation(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.PhoneValidation(nil).Load(map[string]any{"id": "phone_validation_id"}, nil)
+result, err := client.PhoneValidation(nil).Load(nil, nil)
 ```
 
 ### Common Methods

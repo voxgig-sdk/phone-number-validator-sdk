@@ -8,7 +8,7 @@ Complete API reference for the PhoneNumberValidator Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'phone-number-validator_sdk'
+require_relative 'PhoneNumberValidator_sdk'
 
 client = PhoneNumberValidatorSDK.new(options)
 ```
@@ -94,15 +94,15 @@ phone_validation = client.PhoneValidation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `carrier` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `country_name` | ``$STRING`` | No |  |
-| `country_prefix` | ``$STRING`` | No |  |
-| `international_format` | ``$STRING`` | No |  |
-| `line_type` | ``$STRING`` | No |  |
-| `local_format` | ``$STRING`` | No |  |
-| `number` | ``$STRING`` | No |  |
-| `valid` | ``$BOOLEAN`` | No |  |
+| `carrier` | `String` | No |  |
+| `country_code` | `String` | No |  |
+| `country_name` | `String` | No |  |
+| `country_prefix` | `String` | No |  |
+| `international_format` | `String` | No |  |
+| `line_type` | `String` | No |  |
+| `local_format` | `String` | No |  |
+| `number` | `String` | No |  |
+| `valid` | `Boolean` | No |  |
 
 ### Operations
 
@@ -111,7 +111,7 @@ phone_validation = client.PhoneValidation
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.PhoneValidation.load({ "id" => "phone_validation_id" })
+result = client.PhoneValidation.load()
 ```
 
 ### Common Methods

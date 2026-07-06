@@ -117,15 +117,15 @@ const phone_validation = client.PhoneValidation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `carrier` | ``$STRING`` | No |  |
-| `country_code` | ``$STRING`` | No |  |
-| `country_name` | ``$STRING`` | No |  |
-| `country_prefix` | ``$STRING`` | No |  |
-| `international_format` | ``$STRING`` | No |  |
-| `line_type` | ``$STRING`` | No |  |
-| `local_format` | ``$STRING`` | No |  |
-| `number` | ``$STRING`` | No |  |
-| `valid` | ``$BOOLEAN`` | No |  |
+| `carrier` | `string` | No |  |
+| `country_code` | `string` | No |  |
+| `country_name` | `string` | No |  |
+| `country_prefix` | `string` | No |  |
+| `international_format` | `string` | No |  |
+| `line_type` | `string` | No |  |
+| `local_format` | `string` | No |  |
+| `number` | `string` | No |  |
+| `valid` | `boolean` | No |  |
 
 ### Operations
 
@@ -134,7 +134,7 @@ const phone_validation = client.PhoneValidation()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PhoneValidation().load({ id: 'phone_validation_id' })
+const result = await client.PhoneValidation().load()
 ```
 
 ### Common Methods

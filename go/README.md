@@ -4,6 +4,8 @@
 
 The Golang SDK for the PhoneNumberValidator API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.PhoneValidation(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -52,12 +54,41 @@ func main() {
     })
 
     // Load a single phonevalidation — the value is the loaded record.
-    phonevalidation, err := client.PhoneValidation(nil).Load(map[string]any{"id": "example_id"}, nil)
+    phonevalidation, err := client.PhoneValidation(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(phonevalidation)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+phonevalidation, err := client.PhoneValidation(nil).Load(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = phonevalidation
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -108,12 +139,12 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 phonevalidation, err := client.PhoneValidation(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(phonevalidation) // the loaded mock data
+fmt.Println(phonevalidation) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -201,10 +232,6 @@ All entities implement the `PhoneNumberValidatorEntity` interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -217,16 +244,15 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
+| `Load` | the entity record (`map[string]any`) |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    phonevalidation, err := client.PhoneValidation(nil).Load(map[string]any{"id": "example_id"}, nil)
+    phonevalidation, err := client.PhoneValidation(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // phonevalidation is the loaded record
+    // phonevalidation is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -270,20 +296,20 @@ Create an instance: `phone_validation := client.PhoneValidation(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `carrier` | ``$STRING`` |  |
-| `country_code` | ``$STRING`` |  |
-| `country_name` | ``$STRING`` |  |
-| `country_prefix` | ``$STRING`` |  |
-| `international_format` | ``$STRING`` |  |
-| `line_type` | ``$STRING`` |  |
-| `local_format` | ``$STRING`` |  |
-| `number` | ``$STRING`` |  |
-| `valid` | ``$BOOLEAN`` |  |
+| `carrier` | `string` |  |
+| `country_code` | `string` |  |
+| `country_name` | `string` |  |
+| `country_prefix` | `string` |  |
+| `international_format` | `string` |  |
+| `line_type` | `string` |  |
+| `local_format` | `string` |  |
+| `number` | `string` |  |
+| `valid` | `bool` |  |
 
 #### Example: Load
 
 ```go
-phone_validation, err := client.PhoneValidation(nil).Load(map[string]any{"id": "phone_validation_id"}, nil)
+phone_validation, err := client.PhoneValidation(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -291,12 +317,16 @@ fmt.Println(phone_validation) // the loaded record
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -313,9 +343,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -361,9 +391,9 @@ stores the returned data and match criteria internally.
 
 ```go
 phonevalidation := client.PhoneValidation(nil)
-phonevalidation.Load(map[string]any{"id": "example_id"}, nil)
+phonevalidation.Load(nil, nil)
 
-// phonevalidation.Data() now returns the loaded phonevalidation data
+// phonevalidation.Data() now returns the phonevalidation data from the last load
 // phonevalidation.Match() returns the last match criteria
 ```
 

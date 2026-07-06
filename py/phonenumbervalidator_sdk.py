@@ -221,7 +221,7 @@ class PhoneNumberValidatorSDK:
 
 
     def PhoneValidation(self, data=None) -> "PhoneValidationEntity":
-        """Entity factory: client.PhoneValidation().list({}) / client.PhoneValidation().load({"id": ...})."""
+        """Entity factory: client.PhoneValidation().list() / client.PhoneValidation().load({"id": ...})."""
         from entity.phone_validation_entity import PhoneValidationEntity
         return PhoneValidationEntity(self, data)
 
