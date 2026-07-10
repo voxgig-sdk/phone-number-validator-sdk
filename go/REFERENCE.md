@@ -91,7 +91,8 @@ same parameters as `Direct()`.
 ## PhoneValidationEntity
 
 ```go
-phone_validation := client.PhoneValidation(nil)
+phoneValidation := client.PhoneValidation(nil)
+fmt.Println(phoneValidation.GetName()) // "phone_validation"
 ```
 
 ### Fields
@@ -115,7 +116,11 @@ phone_validation := client.PhoneValidation(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.PhoneValidation(nil).Load(nil, nil)
+result, err := client.PhoneValidation(nil).Load(map[string]any{"phone_number": "phone_number"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

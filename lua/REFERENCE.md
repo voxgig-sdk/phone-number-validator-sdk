@@ -108,7 +108,7 @@ local phone_validation = client:PhoneValidation(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PhoneValidation():load()
+local result, err = client:PhoneValidation():load({ phone_number = "phone_number" })
 ```
 
 ### Common Methods

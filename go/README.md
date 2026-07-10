@@ -53,12 +53,12 @@ func main() {
         "apikey": os.Getenv("PHONE_NUMBER_VALIDATOR_APIKEY"),
     })
 
-    // Load a single phonevalidation — the value is the loaded record.
-    phonevalidation, err := client.PhoneValidation(nil).Load(nil, nil)
+    // Load a single phoneValidation — the value is the loaded record.
+    phoneValidation, err := client.PhoneValidation(nil).Load(map[string]any{"phone_number": "example_phone_number"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(phonevalidation)
+    fmt.Println(phoneValidation)
 }
 ```
 
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-phonevalidation, err := client.PhoneValidation(nil).Load(
+phoneValidation, err := client.PhoneValidation(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(phonevalidation) // the returned mock data
+fmt.Println(phoneValidation) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -250,9 +250,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    phonevalidation, err := client.PhoneValidation(nil).Load(nil, nil)
+    phoneValidation, err := client.PhoneValidation(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // phonevalidation is the returned record
+    // phoneValidation is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -284,7 +284,7 @@ API path: `/validate/{phone_number}`
 
 ### PhoneValidation
 
-Create an instance: `phone_validation := client.PhoneValidation(nil)`
+Create an instance: `phoneValidation := client.PhoneValidation(nil)`
 
 #### Operations
 
@@ -309,11 +309,11 @@ Create an instance: `phone_validation := client.PhoneValidation(nil)`
 #### Example: Load
 
 ```go
-phone_validation, err := client.PhoneValidation(nil).Load(nil, nil)
+phoneValidation, err := client.PhoneValidation(nil).Load(map[string]any{"phone_number": "phone_number"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(phone_validation) // the loaded record
+fmt.Println(phoneValidation) // the loaded record
 ```
 
 

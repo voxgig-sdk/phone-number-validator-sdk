@@ -21,7 +21,7 @@ class PhoneNumberValidatorConfig
             "options" => [
                 "base" => "https://api.numlookupapi.com/v1",
                 "auth" => [
-                    "prefix" => "Bearer",
+                    "prefix" => "",
                 ],
                 "headers" => [
           'content-type' => 'application/json',

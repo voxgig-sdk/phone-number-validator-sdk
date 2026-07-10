@@ -9,15 +9,22 @@ main: {
         url: "https://api.numlookupapi.com"
       }
       description: "This API validates phone numbers, providing details such as the local and international format. It identifies the country, carrier, and line type for the given number, ensuring accurate communication."
+      security: {
+        in: "header"
+        name: "apikey"
+        prefix: ""
+        scheme: "ApiKeyAuth"
+        type: "apiKey"
+      }
       servers: [
         {
           description: "Production server"
           url: "https://api.numlookupapi.com/v1"
         }
       ]
+      summary: "This API validates phone numbers, providing details such as the local and international format."
       title: "Phone Number Validator"
       version: "1.0.0"
+      website: "https://numlookupapi.com"
     }
   }
-}
-

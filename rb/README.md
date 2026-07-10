@@ -34,10 +34,12 @@ client = PhoneNumberValidatorSDK.new({
 
 ### 3. Load a phonevalidation
 
+PhoneValidation is nested under phone_number, so provide the `phone_number`.
+
 ```ruby
 begin
   # load returns the bare PhoneValidation record (raises on error).
-  phonevalidation = client.PhoneValidation.load()
+  phonevalidation = client.PhoneValidation.load({ "phone_number" => "example_phone_number" })
   puts phonevalidation
 rescue => err
   warn "load failed: #{err}"
@@ -285,7 +287,7 @@ Create an instance: `phone_validation = client.PhoneValidation`
 
 ```ruby
 # load returns the bare PhoneValidation record (raises on error).
-phone_validation = client.PhoneValidation.load()
+phone_validation = client.PhoneValidation.load({ "phone_number" => "phone_number" })
 ```
 
 

@@ -134,7 +134,7 @@ const phone_validation = client.PhoneValidation()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PhoneValidation().load()
+const result = await client.PhoneValidation().load({ phone_number: 'phone_number' })
 ```
 
 ### Common Methods

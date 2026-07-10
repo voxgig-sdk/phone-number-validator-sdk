@@ -41,11 +41,12 @@ client = PhoneNumberValidatorSDK({
 
 ### 3. Load a phonevalidation
 
+PhoneValidation is nested under phone_number, so provide the `phone_number`.
 `load()` returns the bare record (a `dict`) and raises on error.
 
 ```python
 try:
-    phonevalidation = client.PhoneValidation().load()
+    phonevalidation = client.PhoneValidation().load({"phone_number": "example_phone_number"})
     print(phonevalidation)
 except Exception as err:
     print(f"load failed: {err}")
@@ -291,7 +292,7 @@ Create an instance: `phone_validation = client.PhoneValidation()`
 #### Example: Load
 
 ```python
-phone_validation = client.PhoneValidation().load()
+phone_validation = client.PhoneValidation().load({"phone_number": "phone_number"})
 ```
 
 

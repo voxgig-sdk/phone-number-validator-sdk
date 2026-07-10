@@ -35,10 +35,12 @@ $client = new PhoneNumberValidatorSDK([
 
 ### 3. Load a phonevalidation
 
+PhoneValidation is nested under phone_number, so provide the `phone_number`.
+
 ```php
 try {
     // load() returns the bare PhoneValidation record (throws on error).
-    $phonevalidation = $client->PhoneValidation()->load();
+    $phonevalidation = $client->PhoneValidation()->load(["phone_number" => "example_phone_number"]);
     print_r($phonevalidation);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -295,7 +297,7 @@ Create an instance: `$phone_validation = $client->PhoneValidation();`
 
 ```php
 // load() returns the bare PhoneValidation record (throws on error).
-$phone_validation = $client->PhoneValidation()->load();
+$phone_validation = $client->PhoneValidation()->load(["phone_number" => "phone_number"]);
 ```
 
 

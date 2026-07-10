@@ -105,7 +105,7 @@ phone_validation = client.PhoneValidation()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.PhoneValidation().load()
+result = client.PhoneValidation().load({"phone_number": "phone_number"})
 ```
 
 ### Common Methods
