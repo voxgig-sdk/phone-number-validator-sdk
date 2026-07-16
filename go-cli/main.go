@@ -27,7 +27,20 @@ func main() {
 }
 
 func run(args []string, in io.Reader, out, errOut io.Writer) int {
-	client := sdk.NewPhoneNumberValidatorSDK(nil)
+	// Configure from the environment: PHONE_NUMBER_VALIDATOR_APIKEY carries the API key and
+	// PHONE_NUMBER_VALIDATOR_BASE optionally overrides the API base URL (e.g. production).
+	// Both injectable by a secrets vault. Unset -> nil config defaults.
+	var opts map[string]any
+	if apikey := os.Getenv("PHONE_NUMBER_VALIDATOR_APIKEY"); apikey != "" {
+		opts = map[string]any{"apikey": apikey}
+	}
+	if base := os.Getenv("PHONE_NUMBER_VALIDATOR_BASE"); base != "" {
+		if opts == nil {
+			opts = map[string]any{}
+		}
+		opts["base"] = base
+	}
+	client := sdk.NewPhoneNumberValidatorSDK(opts)
 
 	r, err := eng.NewRegistry()
 	if err != nil {
