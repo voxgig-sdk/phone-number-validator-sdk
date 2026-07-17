@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- PhoneNumberValidator SDK exists test
 
 local sdk = require("phone-number-validator_sdk")
 
