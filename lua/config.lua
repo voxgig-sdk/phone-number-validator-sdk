@@ -135,6 +135,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/validate/{phone_number}",
                 ["parts"] = {

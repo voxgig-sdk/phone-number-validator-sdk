@@ -136,6 +136,7 @@ module PhoneNumberValidatorConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/validate/{phone_number}",
                   "parts" => [

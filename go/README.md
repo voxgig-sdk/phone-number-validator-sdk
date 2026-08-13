@@ -69,7 +69,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-phonevalidation, err := client.PhoneValidation(nil).Load(nil, nil)
+phonevalidation, err := client.PhoneValidation(nil).Load(map[string]any{"phone_number": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -139,7 +139,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 phoneValidation, err := client.PhoneValidation(nil).Load(
-    nil, nil,
+    map[string]any{"phone_number": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -391,7 +391,7 @@ stores the returned data and match criteria internally.
 
 ```go
 phonevalidation := client.PhoneValidation(nil)
-phonevalidation.Load(nil, nil)
+phonevalidation.Load(map[string]any{"phone_number": "example"}, nil)
 
 // phonevalidation.Data() now returns the phonevalidation data from the last load
 // phonevalidation.Match() returns the last match criteria

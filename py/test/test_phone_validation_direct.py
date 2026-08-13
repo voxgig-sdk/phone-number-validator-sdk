@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from phonenumbervalidator_sdk.utility.voxgig_struct import voxgig_struct as vs
 from phonenumbervalidator_sdk import PhoneNumberValidatorSDK
-from core import helpers
+from phonenumbervalidator_sdk.core import helpers
 from test import runner
 
 
@@ -63,16 +63,16 @@ def _phone_validation_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "PHONENUMBERVALIDATOR_TEST_PHONE_VALIDATION_ENTID": {},
-        "PHONENUMBERVALIDATOR_TEST_LIVE": "FALSE",
-        "PHONENUMBERVALIDATOR_APIKEY": "NONE",
+        "PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID": {},
+        "PHONE_NUMBER_VALIDATOR_TEST_LIVE": "FALSE",
+        "PHONE_NUMBER_VALIDATOR_APIKEY": "NONE",
     })
 
-    live = env.get("PHONENUMBERVALIDATOR_TEST_LIVE") == "TRUE"
+    live = env.get("PHONE_NUMBER_VALIDATOR_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("PHONENUMBERVALIDATOR_APIKEY"),
+            "apikey": env.get("PHONE_NUMBER_VALIDATOR_APIKEY"),
         }
         client = PhoneNumberValidatorSDK(merged_opts)
         return {

@@ -38,7 +38,7 @@ PhoneValidation is nested under phone_number, so provide the `phone_number`.
 
 ```ruby
 begin
-  # load returns the bare PhoneValidation record (raises on error).
+  # load returns the ENTITY — call data_get for the PhoneValidation record (raises on error).
   phonevalidation = client.PhoneValidation.load({ "phone_number" => "example_phone_number" })
   puts phonevalidation
 rescue => err
@@ -53,7 +53,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  phonevalidation = client.PhoneValidation.load()
+  phonevalidation = client.PhoneValidation.load({ "phone_number" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -121,8 +121,9 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = PhoneNumberValidatorSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-phonevalidation = client.PhoneValidation.load()
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+phonevalidation = client.PhoneValidation.load({ "phone_number" => "example" })
 puts phonevalidation
 ```
 
@@ -286,7 +287,7 @@ Create an instance: `phone_validation = client.PhoneValidation`
 #### Example: Load
 
 ```ruby
-# load returns the bare PhoneValidation record (raises on error).
+# load returns the ENTITY — call data_get for the PhoneValidation record (raises on error).
 phone_validation = client.PhoneValidation.load({ "phone_number" => "phone_number" })
 ```
 
@@ -368,7 +369,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 phonevalidation = client.PhoneValidation
-phonevalidation.load()
+phonevalidation.load({ "phone_number" => "example" })
 
 # phonevalidation.data_get now returns the phonevalidation data from the last load
 # phonevalidation.match_get returns the last match criteria

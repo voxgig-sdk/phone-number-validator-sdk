@@ -39,7 +39,7 @@ PhoneValidation is nested under phone_number, so provide the `phone_number`.
 
 ```php
 try {
-    // load() returns the bare PhoneValidation record (throws on error).
+    // load() returns the ENTITY — call data_get() for the PhoneValidation record (throws on error).
     $phonevalidation = $client->PhoneValidation()->load(["phone_number" => "example_phone_number"]);
     print_r($phonevalidation);
 } catch (\Throwable $err) {
@@ -55,7 +55,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $phonevalidation = $client->PhoneValidation()->load();
+    $phonevalidation = $client->PhoneValidation()->load(["phone_number" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -127,8 +127,9 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = PhoneNumberValidatorSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$phonevalidation = $client->PhoneValidation()->load();
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$phonevalidation = $client->PhoneValidation()->load(["phone_number" => "example"]);
 print_r($phonevalidation);
 ```
 
@@ -228,7 +229,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -296,7 +297,7 @@ Create an instance: `$phone_validation = $client->PhoneValidation();`
 #### Example: Load
 
 ```php
-// load() returns the bare PhoneValidation record (throws on error).
+// load() returns the ENTITY — call data_get() for the PhoneValidation record (throws on error).
 $phone_validation = $client->PhoneValidation()->load(["phone_number" => "phone_number"]);
 ```
 
@@ -378,7 +379,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $phonevalidation = $client->PhoneValidation();
-$phonevalidation->load();
+$phonevalidation->load(["phone_number" => "example"]);
 
 // $phonevalidation->data_get() now returns the phonevalidation data from the last load
 // $phonevalidation->match_get() returns the last match criteria

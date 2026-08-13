@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ PhoneNumberValidatorUtility.registrar = ->(u) {
   u.prepare_params = PhoneNumberValidatorUtilities::PrepareParams
   u.prepare_path = PhoneNumberValidatorUtilities::PreparePath
   u.prepare_query = PhoneNumberValidatorUtilities::PrepareQuery
+  u.graphql_body = PhoneNumberValidatorUtilities::GraphqlBody
+  u.graphql_errors = PhoneNumberValidatorUtilities::GraphqlErrors
   u.result_basic = PhoneNumberValidatorUtilities::ResultBasic
   u.result_body = PhoneNumberValidatorUtilities::ResultBody
   u.result_headers = PhoneNumberValidatorUtilities::ResultHeaders

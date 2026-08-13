@@ -26,8 +26,8 @@ import {
 describe('PhoneValidationEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PHONENUMBERVALIDATOR_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PHONENUMBERVALIDATOR_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PHONE_NUMBER_VALIDATOR_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PHONE_NUMBER_VALIDATOR_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = PhoneNumberValidatorSDK.test()

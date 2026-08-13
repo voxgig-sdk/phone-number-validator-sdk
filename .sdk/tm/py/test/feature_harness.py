@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import PhoneNumberValidatorControl
-from core.error import PhoneNumberValidatorError
-from core.result import PhoneNumberValidatorResult
-from core.spec import PhoneNumberValidatorSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import PhoneNumberValidatorControl
+from projectname_sdk.core.error import PhoneNumberValidatorError
+from projectname_sdk.core.result import PhoneNumberValidatorResult
+from projectname_sdk.core.spec import PhoneNumberValidatorSpec
 
 
 # True when this SDK was generated with the named feature.

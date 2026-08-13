@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import PhoneNumberValidatorSDK
-from core.error import PhoneNumberValidatorError
-from core.result import PhoneNumberValidatorResult
-from core.response import PhoneNumberValidatorResponse
-from core.spec import PhoneNumberValidatorSpec
-from feature.base_feature import PhoneNumberValidatorBaseFeature
+from projectname_sdk.core.error import PhoneNumberValidatorError
+from projectname_sdk.core.result import PhoneNumberValidatorResult
+from projectname_sdk.core.response import PhoneNumberValidatorResponse
+from projectname_sdk.core.spec import PhoneNumberValidatorSpec
+from projectname_sdk.feature.base_feature import PhoneNumberValidatorBaseFeature
 
 
 def _client():

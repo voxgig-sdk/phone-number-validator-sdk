@@ -19,11 +19,15 @@ import {
 describe('PhoneValidationDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PHONENUMBERVALIDATOR_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PHONENUMBERVALIDATOR_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PHONE_NUMBER_VALIDATOR_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PHONE_NUMBER_VALIDATOR_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new PhoneNumberValidatorSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -77,19 +81,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'PHONENUMBERVALIDATOR_TEST_PHONE_VALIDATION_ENTID': {},
-    'PHONENUMBERVALIDATOR_TEST_LIVE': 'FALSE',
-    'PHONENUMBERVALIDATOR_APIKEY': 'NONE',
+    'PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID': {},
+    'PHONE_NUMBER_VALIDATOR_TEST_LIVE': 'FALSE',
+    'PHONE_NUMBER_VALIDATOR_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.PHONENUMBERVALIDATOR_TEST_LIVE
+  const live = 'TRUE' === env.PHONE_NUMBER_VALIDATOR_TEST_LIVE
 
   if (live) {
     const client = new PhoneNumberValidatorSDK({
-      apikey: env.PHONENUMBERVALIDATOR_APIKEY,
+      apikey: env.PHONE_NUMBER_VALIDATOR_APIKEY,
     })
 
-    let idmap: any = env['PHONENUMBERVALIDATOR_TEST_PHONE_VALIDATION_ENTID']
+    let idmap: any = env['PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

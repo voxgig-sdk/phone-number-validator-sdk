@@ -23,7 +23,7 @@ support (`load`):
 
 ```ts
 const client = new PhoneNumberValidatorSDK()
-const phonevalidation = await client.PhoneValidation().load()
+const phonevalidation = await client.PhoneValidation().load({ phone_number: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = PhoneNumberValidatorSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = PhoneNumberValidatorSDK.test({
+  entity: {
+    phone_validation: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const phonevalidation = await client.PhoneValidation().load({ phone_number: 'example_phone_number' })
-// phonevalidation is a bare PhoneValidation populated with mock data
+// phonevalidation is the PhoneValidation entity, populated with mock data
+// — call phonevalidation.data() for the record itself
 console.log(phonevalidation)
 ```
 
@@ -192,7 +201,7 @@ $client = new PhoneNumberValidatorSDK([
 ]);
 
 
-// Load a specific phonevalidation (returns the bare record; throws on error)
+// Load a specific phonevalidation (returns the ENTITY; call data_get() for the record; throws on error)
 $phonevalidation = $client->PhoneValidation()->load(["phone_number" => "example_phone_number"]);
 print_r($phonevalidation);
 ```
@@ -227,7 +236,7 @@ client = PhoneNumberValidatorSDK.new({
 })
 
 
-# Load a specific phonevalidation (returns the bare record; raises on error)
+# Load a specific phonevalidation (returns the ENTITY; call data_get for the record)
 phonevalidation = client.PhoneValidation.load({ "phone_number" => "example_phone_number" })
 puts phonevalidation
 ```
@@ -363,6 +372,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://api.numlookupapi.com](https://api.numlookupapi.com)
 

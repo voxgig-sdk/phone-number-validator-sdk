@@ -43,8 +43,8 @@ class PhoneNumberValidatorTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('PHONENUMBERVALIDATOR_TEST_LIVE');
-        $override = self::getenv('PHONENUMBERVALIDATOR_TEST_OVERRIDE');
+        $live = self::getenv('PHONE_NUMBER_VALIDATOR_TEST_LIVE');
+        $override = self::getenv('PHONE_NUMBER_VALIDATOR_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class PhoneNumberValidatorTestRunner
             }
         }
 
-        $explain = self::getenv('PHONENUMBERVALIDATOR_TEST_EXPLAIN');
+        $explain = self::getenv('PHONE_NUMBER_VALIDATOR_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['PHONENUMBERVALIDATOR_TEST_EXPLAIN'] = $explain;
+            $m['PHONE_NUMBER_VALIDATOR_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

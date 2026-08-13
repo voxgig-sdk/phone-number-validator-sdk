@@ -23,8 +23,8 @@ module PhoneNumberValidatorTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("PHONENUMBERVALIDATOR_TEST_LIVE")
-    override = getenv("PHONENUMBERVALIDATOR_TEST_OVERRIDE")
+    live = getenv("PHONE_NUMBER_VALIDATOR_TEST_LIVE")
+    override = getenv("PHONE_NUMBER_VALIDATOR_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module PhoneNumberValidatorTestRunner
       end
     end
 
-    explain = getenv("PHONENUMBERVALIDATOR_TEST_EXPLAIN")
-    m["PHONENUMBERVALIDATOR_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("PHONE_NUMBER_VALIDATOR_TEST_EXPLAIN")
+    m["PHONE_NUMBER_VALIDATOR_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

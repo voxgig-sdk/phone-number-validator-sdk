@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'PhoneNumberValidator',
   }
 
 
@@ -166,6 +166,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/validate/{phone_number}",
               "parts": [

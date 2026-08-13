@@ -58,7 +58,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const phonevalidation = await client.PhoneValidation().load()
+  const phonevalidation = await client.PhoneValidation().load({ phone_number: "example" })
   console.log(phonevalidation)
 } catch (err) {
   console.error('load failed:', err)
@@ -125,8 +125,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PhoneNumberValidatorSDK.test()
 
-const phonevalidation = await client.PhoneValidation().load()
-// phonevalidation is a bare entity populated with mock response data
+const phonevalidation = await client.PhoneValidation().load({ phone_number: 'example_phone_number' })
+// phonevalidation is the entity, populated with mock response data
+// — call phonevalidation.data() for the record itself
 console.log(phonevalidation)
 ```
 
@@ -145,7 +146,7 @@ Entity instances remember their last match and data:
 const entity = client.PhoneValidation()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ phone_number: 'example_phone_number' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -413,7 +414,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const phonevalidation = client.PhoneValidation()
-await phonevalidation.load()
+await phonevalidation.load({ phone_number: "example" })
 
 // phonevalidation.data() now returns the phonevalidation data from the last `load`
 // phonevalidation.match() returns the last match criteria

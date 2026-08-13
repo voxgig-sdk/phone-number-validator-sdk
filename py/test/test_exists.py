@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# PhoneNumberValidator SDK exists test
 
 import pytest
 from phonenumbervalidator_sdk import PhoneNumberValidatorSDK
