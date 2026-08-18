@@ -40,7 +40,7 @@ class PhoneNumberValidatorSDK
         $utility = new PhoneNumberValidatorUtility();
         $this->_utility = $utility;
 
-        $config = PhoneNumberValidatorConfig::make_config();
+        $config = PhoneNumberValidatorConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

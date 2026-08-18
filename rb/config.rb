@@ -1,6 +1,20 @@
 # PhoneNumberValidator SDK configuration
 
 module PhoneNumberValidatorConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -29,67 +43,40 @@ module PhoneNumberValidatorConfig
         "phone_validation" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "carrier",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "country_code",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "country_name",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "country_prefix",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "international_format",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "line_type",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "local_format",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "number",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "valid",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 8,
             },
           ],
           "name" => "phone_validation",
@@ -99,11 +86,9 @@ module PhoneNumberValidatorConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "header" => [
                       {
-                        "active" => true,
                         "example" => "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
                         "kind" => "header",
                         "name" => "apikey",
@@ -114,24 +99,20 @@ module PhoneNumberValidatorConfig
                     ],
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "01613950781",
                         "kind" => "param",
                         "name" => "phone_number",
                         "orig" => "phone_number",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "example" => "BD",
                         "kind" => "query",
                         "name" => "country_code",
                         "orig" => "country_code",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -154,10 +135,8 @@ module PhoneNumberValidatorConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {

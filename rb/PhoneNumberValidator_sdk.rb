@@ -28,7 +28,7 @@ class PhoneNumberValidatorSDK
     utility = PhoneNumberValidatorUtility.new
     @_utility = utility
 
-    config = PhoneNumberValidatorConfig.make_config
+    config = PhoneNumberValidatorConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
