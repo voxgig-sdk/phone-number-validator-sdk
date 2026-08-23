@@ -247,15 +247,15 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `carrier` |  |
-| `country_code` |  |
-| `country_name` |  |
-| `country_prefix` |  |
-| `international_format` |  |
-| `line_type` |  |
-| `local_format` |  |
-| `number` |  |
-| `valid` |  |
+| `carrier` | Name of the carrier/operator |
+| `country_code` | ISO country code |
+| `country_name` | Name of the country |
+| `country_prefix` | Country dialing prefix |
+| `international_format` | Phone number in international format |
+| `line_type` | Type of phone line (mobile, landline, etc.) |
+| `local_format` | Phone number in local format |
+| `number` | The original phone number |
+| `valid` | Whether the phone number is valid |
 
 Operations: Load.
 
@@ -280,15 +280,15 @@ Create an instance: `phone_validation = client.PhoneValidation()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `carrier` | `str` |  |
-| `country_code` | `str` |  |
-| `country_name` | `str` |  |
-| `country_prefix` | `str` |  |
-| `international_format` | `str` |  |
-| `line_type` | `str` |  |
-| `local_format` | `str` |  |
-| `number` | `str` |  |
-| `valid` | `bool` |  |
+| `carrier` | `str` | Name of the carrier/operator |
+| `country_code` | `str` | ISO country code |
+| `country_name` | `str` | Name of the country |
+| `country_prefix` | `str` | Country dialing prefix |
+| `international_format` | `str` | Phone number in international format |
+| `line_type` | `str` | Type of phone line (mobile, landline, etc.) |
+| `local_format` | `str` | Phone number in local format |
+| `number` | `str` | The original phone number |
+| `valid` | `bool` | Whether the phone number is valid |
 
 #### Example: Load
 

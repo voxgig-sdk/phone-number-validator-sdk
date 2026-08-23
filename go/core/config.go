@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "PhoneNumberValidator",
+			"slug": "phone-number-validator",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -36,38 +39,47 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "carrier",
+						"short": "Name of the carrier/operator",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country_code",
+						"short": "ISO country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country_name",
+						"short": "Name of the country",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country_prefix",
+						"short": "Country dialing prefix",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "international_format",
+						"short": "Phone number in international format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "line_type",
+						"short": "Type of phone line (mobile, landline, etc.)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "local_format",
+						"short": "Phone number in local format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "number",
+						"short": "The original phone number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "valid",
+						"short": "Whether the phone number is valid",
 						"type": "`$BOOLEAN`",
 					},
 				},

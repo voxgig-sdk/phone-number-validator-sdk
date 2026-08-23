@@ -241,15 +241,15 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `carrier` |  |
-| `country_code` |  |
-| `country_name` |  |
-| `country_prefix` |  |
-| `international_format` |  |
-| `line_type` |  |
-| `local_format` |  |
-| `number` |  |
-| `valid` |  |
+| `carrier` | Name of the carrier/operator |
+| `country_code` | ISO country code |
+| `country_name` | Name of the country |
+| `country_prefix` | Country dialing prefix |
+| `international_format` | Phone number in international format |
+| `line_type` | Type of phone line (mobile, landline, etc.) |
+| `local_format` | Phone number in local format |
+| `number` | The original phone number |
+| `valid` | Whether the phone number is valid |
 
 Operations: Load.
 
@@ -274,15 +274,15 @@ Create an instance: `phone_validation = client.PhoneValidation`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `carrier` | `String` |  |
-| `country_code` | `String` |  |
-| `country_name` | `String` |  |
-| `country_prefix` | `String` |  |
-| `international_format` | `String` |  |
-| `line_type` | `String` |  |
-| `local_format` | `String` |  |
-| `number` | `String` |  |
-| `valid` | `Boolean` |  |
+| `carrier` | `String` | Name of the carrier/operator |
+| `country_code` | `String` | ISO country code |
+| `country_name` | `String` | Name of the country |
+| `country_prefix` | `String` | Country dialing prefix |
+| `international_format` | `String` | Phone number in international format |
+| `line_type` | `String` | Type of phone line (mobile, landline, etc.) |
+| `local_format` | `String` | Phone number in local format |
+| `number` | `String` | The original phone number |
+| `valid` | `Boolean` | Whether the phone number is valid |
 
 #### Example: Load
 

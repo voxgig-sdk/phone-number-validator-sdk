@@ -94,15 +94,15 @@ phone_validation = client.PhoneValidation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `carrier` | `String` | No |  |
-| `country_code` | `String` | No |  |
-| `country_name` | `String` | No |  |
-| `country_prefix` | `String` | No |  |
-| `international_format` | `String` | No |  |
-| `line_type` | `String` | No |  |
-| `local_format` | `String` | No |  |
-| `number` | `String` | No |  |
-| `valid` | `Boolean` | No |  |
+| `carrier` | `String` | No | Name of the carrier/operator |
+| `country_code` | `String` | No | ISO country code |
+| `country_name` | `String` | No | Name of the country |
+| `country_prefix` | `String` | No | Country dialing prefix |
+| `international_format` | `String` | No | Phone number in international format |
+| `line_type` | `String` | No | Type of phone line (mobile, landline, etc.) |
+| `local_format` | `String` | No | Phone number in local format |
+| `number` | `String` | No | The original phone number |
+| `valid` | `Boolean` | No | Whether the phone number is valid |
 
 ### Operations
 

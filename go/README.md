@@ -6,7 +6,7 @@ The Golang SDK for the PhoneNumberValidator API — an entity-oriented client us
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.PhoneValidation(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -263,15 +263,15 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"carrier"` |  |
-| `"country_code"` |  |
-| `"country_name"` |  |
-| `"country_prefix"` |  |
-| `"international_format"` |  |
-| `"line_type"` |  |
-| `"local_format"` |  |
-| `"number"` |  |
-| `"valid"` |  |
+| `"carrier"` | Name of the carrier/operator |
+| `"country_code"` | ISO country code |
+| `"country_name"` | Name of the country |
+| `"country_prefix"` | Country dialing prefix |
+| `"international_format"` | Phone number in international format |
+| `"line_type"` | Type of phone line (mobile, landline, etc.) |
+| `"local_format"` | Phone number in local format |
+| `"number"` | The original phone number |
+| `"valid"` | Whether the phone number is valid |
 
 Operations: Load.
 
@@ -296,15 +296,15 @@ Create an instance: `phoneValidation := client.PhoneValidation(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `carrier` | `string` |  |
-| `country_code` | `string` |  |
-| `country_name` | `string` |  |
-| `country_prefix` | `string` |  |
-| `international_format` | `string` |  |
-| `line_type` | `string` |  |
-| `local_format` | `string` |  |
-| `number` | `string` |  |
-| `valid` | `bool` |  |
+| `carrier` | `string` | Name of the carrier/operator |
+| `country_code` | `string` | ISO country code |
+| `country_name` | `string` | Name of the country |
+| `country_prefix` | `string` | Country dialing prefix |
+| `international_format` | `string` | Phone number in international format |
+| `line_type` | `string` | Type of phone line (mobile, landline, etc.) |
+| `local_format` | `string` | Phone number in local format |
+| `number` | `string` | The original phone number |
+| `valid` | `bool` | Whether the phone number is valid |
 
 #### Example: Load
 

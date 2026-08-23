@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -294,15 +294,15 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `carrier` |  |
-| `country_code` |  |
-| `country_name` |  |
-| `country_prefix` |  |
-| `international_format` |  |
-| `line_type` |  |
-| `local_format` |  |
-| `number` |  |
-| `valid` |  |
+| `carrier` | Name of the carrier/operator |
+| `country_code` | ISO country code |
+| `country_name` | Name of the country |
+| `country_prefix` | Country dialing prefix |
+| `international_format` | Phone number in international format |
+| `line_type` | Type of phone line (mobile, landline, etc.) |
+| `local_format` | Phone number in local format |
+| `number` | The original phone number |
+| `valid` | Whether the phone number is valid |
 
 Operations: load.
 
@@ -327,15 +327,15 @@ Create an instance: `const phone_validation = client.PhoneValidation()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `carrier` | `string` |  |
-| `country_code` | `string` |  |
-| `country_name` | `string` |  |
-| `country_prefix` | `string` |  |
-| `international_format` | `string` |  |
-| `line_type` | `string` |  |
-| `local_format` | `string` |  |
-| `number` | `string` |  |
-| `valid` | `boolean` |  |
+| `carrier` | `string` | Name of the carrier/operator |
+| `country_code` | `string` | ISO country code |
+| `country_name` | `string` | Name of the country |
+| `country_prefix` | `string` | Country dialing prefix |
+| `international_format` | `string` | Phone number in international format |
+| `line_type` | `string` | Type of phone line (mobile, landline, etc.) |
+| `local_format` | `string` | Phone number in local format |
+| `number` | `string` | The original phone number |
+| `valid` | `boolean` | Whether the phone number is valid |
 
 #### Example: Load
 

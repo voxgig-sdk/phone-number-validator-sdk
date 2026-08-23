@@ -91,15 +91,15 @@ local phone_validation = client:PhoneValidation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `carrier` | `string` | No |  |
-| `country_code` | `string` | No |  |
-| `country_name` | `string` | No |  |
-| `country_prefix` | `string` | No |  |
-| `international_format` | `string` | No |  |
-| `line_type` | `string` | No |  |
-| `local_format` | `string` | No |  |
-| `number` | `string` | No |  |
-| `valid` | `boolean` | No |  |
+| `carrier` | `string` | No | Name of the carrier/operator |
+| `country_code` | `string` | No | ISO country code |
+| `country_name` | `string` | No | Name of the country |
+| `country_prefix` | `string` | No | Country dialing prefix |
+| `international_format` | `string` | No | Phone number in international format |
+| `line_type` | `string` | No | Type of phone line (mobile, landline, etc.) |
+| `local_format` | `string` | No | Phone number in local format |
+| `number` | `string` | No | The original phone number |
+| `valid` | `boolean` | No | Whether the phone number is valid |
 
 ### Operations
 

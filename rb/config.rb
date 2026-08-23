@@ -19,6 +19,9 @@ module PhoneNumberValidatorConfig
     {
       "main" => {
         "name" => "PhoneNumberValidator",
+        "slug" => "phone-number-validator",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -44,38 +47,47 @@ module PhoneNumberValidatorConfig
           "fields" => [
             {
               "name" => "carrier",
+              "short" => "Name of the carrier/operator",
               "type" => "`$STRING`",
             },
             {
               "name" => "country_code",
+              "short" => "ISO country code",
               "type" => "`$STRING`",
             },
             {
               "name" => "country_name",
+              "short" => "Name of the country",
               "type" => "`$STRING`",
             },
             {
               "name" => "country_prefix",
+              "short" => "Country dialing prefix",
               "type" => "`$STRING`",
             },
             {
               "name" => "international_format",
+              "short" => "Phone number in international format",
               "type" => "`$STRING`",
             },
             {
               "name" => "line_type",
+              "short" => "Type of phone line (mobile, landline, etc.)",
               "type" => "`$STRING`",
             },
             {
               "name" => "local_format",
+              "short" => "Phone number in local format",
               "type" => "`$STRING`",
             },
             {
               "name" => "number",
+              "short" => "The original phone number",
               "type" => "`$STRING`",
             },
             {
               "name" => "valid",
+              "short" => "Whether the phone number is valid",
               "type" => "`$BOOLEAN`",
             },
           ],

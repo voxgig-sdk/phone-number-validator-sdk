@@ -36,54 +36,63 @@
               "active": true,
               "name": "carrier",
               "req": false,
+              "short": "Name of the carrier/operator",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "country_code",
               "req": false,
+              "short": "ISO country code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "country_name",
               "req": false,
+              "short": "Name of the country",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "country_prefix",
               "req": false,
+              "short": "Country dialing prefix",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "international_format",
               "req": false,
+              "short": "Phone number in international format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "line_type",
               "req": false,
+              "short": "Type of phone line (mobile, landline, etc.)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "local_format",
               "req": false,
+              "short": "Phone number in local format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "number",
               "req": false,
+              "short": "The original phone number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "valid",
               "req": false,
+              "short": "Whether the phone number is valid",
               "type": "`$BOOLEAN`"
             }
           ],

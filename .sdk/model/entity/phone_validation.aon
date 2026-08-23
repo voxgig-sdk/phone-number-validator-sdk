@@ -8,46 +8,55 @@ main: kit: entity: phone_validation: {
     {
       name: "carrier"
       req: false
+      short: "Name of the carrier/operator"
       type: "`$STRING`"
     }
     {
       name: "country_code"
       req: false
+      short: "ISO country code"
       type: "`$STRING`"
     }
     {
       name: "country_name"
       req: false
+      short: "Name of the country"
       type: "`$STRING`"
     }
     {
       name: "country_prefix"
       req: false
+      short: "Country dialing prefix"
       type: "`$STRING`"
     }
     {
       name: "international_format"
       req: false
+      short: "Phone number in international format"
       type: "`$STRING`"
     }
     {
       name: "line_type"
       req: false
+      short: "Type of phone line (mobile, landline, etc.)"
       type: "`$STRING`"
     }
     {
       name: "local_format"
       req: false
+      short: "Phone number in local format"
       type: "`$STRING`"
     }
     {
       name: "number"
       req: false
+      short: "The original phone number"
       type: "`$STRING`"
     }
     {
       name: "valid"
       req: false
+      short: "Whether the phone number is valid"
       type: "`$BOOLEAN`"
     }
   ]

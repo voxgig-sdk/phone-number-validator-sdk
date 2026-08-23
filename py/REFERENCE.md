@@ -88,15 +88,15 @@ phone_validation = client.PhoneValidation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `carrier` | `str` | No |  |
-| `country_code` | `str` | No |  |
-| `country_name` | `str` | No |  |
-| `country_prefix` | `str` | No |  |
-| `international_format` | `str` | No |  |
-| `line_type` | `str` | No |  |
-| `local_format` | `str` | No |  |
-| `number` | `str` | No |  |
-| `valid` | `bool` | No |  |
+| `carrier` | `str` | No | Name of the carrier/operator |
+| `country_code` | `str` | No | ISO country code |
+| `country_name` | `str` | No | Name of the country |
+| `country_prefix` | `str` | No | Country dialing prefix |
+| `international_format` | `str` | No | Phone number in international format |
+| `line_type` | `str` | No | Type of phone line (mobile, landline, etc.) |
+| `local_format` | `str` | No | Phone number in local format |
+| `number` | `str` | No | The original phone number |
+| `valid` | `bool` | No | Whether the phone number is valid |
 
 ### Operations
 
