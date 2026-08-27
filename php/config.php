@@ -42,6 +42,7 @@ class PhoneNumberValidatorConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
