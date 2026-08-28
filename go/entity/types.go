@@ -28,6 +28,7 @@ type PhoneValidation struct {
 // PhoneValidationLoadMatch is the typed request payload for PhoneValidation.LoadTyped.
 type PhoneValidationLoadMatch struct {
 	PhoneNumber string `json:"phone_number"`
+	CountryCode *string `json:"country_code,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

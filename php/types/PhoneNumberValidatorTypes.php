@@ -30,5 +30,6 @@ class PhoneValidation
 class PhoneValidationLoadMatch
 {
     public string $phone_number;
+    public ?string $country_code = null;
 }
 

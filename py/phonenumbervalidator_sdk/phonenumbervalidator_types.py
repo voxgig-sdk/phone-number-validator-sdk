@@ -28,5 +28,9 @@ class PhoneValidation(TypedDict, total=False):
     valid: bool
 
 
-class PhoneValidationLoadMatch(TypedDict):
+class PhoneValidationLoadMatchRequired(TypedDict):
     phone_number: str
+
+
+class PhoneValidationLoadMatch(PhoneValidationLoadMatchRequired, total=False):
+    country_code: str

@@ -19,5 +19,6 @@ export interface PhoneValidation {
 
 export interface PhoneValidationLoadMatch {
   phone_number: string
+  country_code?: string
 }
 

@@ -53,8 +53,12 @@ PhoneValidation = Struct.new(
 #
 # @!attribute [rw] phone_number
 #   @return [String]
+#
+# @!attribute [rw] country_code
+#   @return [String, nil]
 PhoneValidationLoadMatch = Struct.new(
   :phone_number,
+  :country_code,
   keyword_init: true
 )
 

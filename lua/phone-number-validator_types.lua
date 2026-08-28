@@ -19,6 +19,7 @@
 
 ---@class PhoneValidationLoadMatch
 ---@field phone_number string
+---@field country_code? string
 
 local M = {}
 
