@@ -1,6 +1,14 @@
 # PhoneNumberValidator SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -142,9 +150,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/validate/{phone_number}",
-                "parts": [
-                  "validate",
-                  "{phone_number}",
+                "segments": [
+                  {
+                    "lit": "validate",
+                  },
+                  {
+                    "var": "phone_number",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -157,6 +169,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "validate",
+                  "{phone_number}",
+                ],
               },
             ],
           },

@@ -133,9 +133,13 @@ module PhoneNumberValidatorConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/validate/{phone_number}",
-                  "parts" => [
-                    "validate",
-                    "{phone_number}",
+                  "segments" => [
+                    {
+                      "lit" => "validate",
+                    },
+                    {
+                      "var" => "phone_number",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -148,6 +152,10 @@ module PhoneNumberValidatorConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "validate",
+                    "{phone_number}",
+                  ],
                 },
               ],
             },

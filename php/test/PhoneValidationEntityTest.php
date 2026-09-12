@@ -84,7 +84,7 @@ function phone_validation_basic_setup($extra)
         "PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID" => $idmap,
         "PHONE_NUMBER_VALIDATOR_TEST_LIVE" => "FALSE",
         "PHONE_NUMBER_VALIDATOR_TEST_EXPLAIN" => "FALSE",
-        "PHONE_NUMBER_VALIDATOR_APIKEY" => "NONE",
+        "PHONE_NUMBER_VALIDATOR_APIKEY" => "",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -95,10 +95,17 @@ function phone_validation_basic_setup($extra)
 
     if ($env["PHONE_NUMBER_VALIDATOR_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
+            // FIRST, so the generated fields below win: sdk-test-control.json's
+            // test.client.options adds to the live client, it does not redirect it.
+            Runner::live_client_options(),
             [
                 "apikey" => $env["PHONE_NUMBER_VALIDATOR_APIKEY"],
             ],
-            $extra ?? [],
+            // ismap, not a plain "?? []" default: an empty PHP array is a
+            // LIST, and a non-map later entry REPLACES the accumulated map in
+            // merge - so the no-extras call discarded live_client_options()
+            // and the apikey/server map above it.
+            Vs::ismap($extra) ? $extra : new \stdClass(),
         ]);
         $client = new PhoneNumberValidatorSDK(Helpers::to_map($merged_opts));
     }

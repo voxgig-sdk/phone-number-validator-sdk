@@ -121,9 +121,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/validate/{phone_number}",
-                ["parts"] = {
-                  "validate",
-                  "{phone_number}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "validate",
+                  },
+                  {
+                    ["var"] = "phone_number",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -135,6 +139,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "validate",
+                  "{phone_number}",
                 },
               },
             },

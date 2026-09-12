@@ -69,15 +69,17 @@ def phone_validation_direct_setup(mockres)
   env = Runner.env_override({
     "PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID" => {},
     "PHONE_NUMBER_VALIDATOR_TEST_LIVE" => "FALSE",
-    "PHONE_NUMBER_VALIDATOR_APIKEY" => "NONE",
+    "PHONE_NUMBER_VALIDATOR_APIKEY" => "",
   })
 
   live = env["PHONE_NUMBER_VALIDATOR_TEST_LIVE"] == "TRUE"
 
   if live
-    merged_opts = {
+    # Merged so the generated fields win: sdk-test-control.json's
+    # test.client.options adds to the live client, it does not redirect it.
+    merged_opts = Runner.live_client_options.merge({
       "apikey" => env["PHONE_NUMBER_VALIDATOR_APIKEY"],
-    }
+    })
     client = PhoneNumberValidatorSDK.new(merged_opts)
     return {
       client: client,

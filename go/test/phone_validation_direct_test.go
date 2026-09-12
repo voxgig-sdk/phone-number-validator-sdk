@@ -111,14 +111,22 @@ func phone_validationDirectSetup(mockres any) *phone_validationDirectSetupResult
 	env := envOverride(map[string]any{
 		"PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID": map[string]any{},
 		"PHONE_NUMBER_VALIDATOR_TEST_LIVE":    "FALSE",
-		"PHONE_NUMBER_VALIDATOR_APIKEY":       "NONE",
+		"PHONE_NUMBER_VALIDATOR_APIKEY":       "",
 	})
 
 	live := env["PHONE_NUMBER_VALIDATOR_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["PHONE_NUMBER_VALIDATOR_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewPhoneNumberValidatorSDK(mergedOpts)
 
