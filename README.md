@@ -105,7 +105,7 @@ local result, err = client:PhoneValidation():load({ phone_number = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/phone-number-validator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases) |
+| TypeScript | `@voxgig-sdk/phone-number-validator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases) |
 | Python | `voxgig-sdk-phone-number-validator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases) |
 | PHP | `voxgig-sdk/phone-number-validator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/phone-number-validator-sdk/go` | `go get github.com/voxgig-sdk/phone-number-validator-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:PhoneValidation():load({ phone_number = "example" })
 ### TypeScript
 
 ```ts
-import { PhoneNumberValidatorSDK } from '@voxgig-sdk/phone-number-validator'
+import { PhoneNumberValidatorSDK } from '@voxgig-sdk/phone-number-validator-sdk'
 
 const client = new PhoneNumberValidatorSDK({
   apikey: process.env.PHONE_NUMBER_VALIDATOR_APIKEY,

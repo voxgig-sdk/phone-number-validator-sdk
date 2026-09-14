@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { PhoneNumberValidatorSDK } from '@voxgig-sdk/phone-number-validator'
+import { PhoneNumberValidatorSDK } from '@voxgig-sdk/phone-number-validator-sdk'
 
 const client = new PhoneNumberValidatorSDK({
   apikey: process.env.PHONE_NUMBER_VALIDATOR_APIKEY,
@@ -426,7 +426,7 @@ phone-number-validator/
 Import the SDK from the package root:
 
 ```ts
-import { PhoneNumberValidatorSDK } from '@voxgig-sdk/phone-number-validator'
+import { PhoneNumberValidatorSDK } from '@voxgig-sdk/phone-number-validator-sdk'
 ```
 
 ### Entity state
