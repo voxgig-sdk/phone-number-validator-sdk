@@ -4,7 +4,10 @@ declare(strict_types=1);
 // PhoneNumberValidator SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class PhoneNumberValidatorFeatures
@@ -14,8 +17,14 @@ class PhoneNumberValidatorFeatures
         switch ($name) {
             case "base":
                 return new PhoneNumberValidatorBaseFeature();
+            case "ratelimit":
+                return new PhoneNumberValidatorRatelimitFeature();
+            case "retry":
+                return new PhoneNumberValidatorRetryFeature();
             case "test":
                 return new PhoneNumberValidatorTestFeature();
+            case "timeout":
+                return new PhoneNumberValidatorTimeoutFeature();
             default:
                 return new PhoneNumberValidatorBaseFeature();
         }
@@ -31,7 +40,10 @@ class PhoneNumberValidatorFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

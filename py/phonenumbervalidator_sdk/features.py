@@ -1,12 +1,18 @@
 # PhoneNumberValidator SDK feature factory
 
 from phonenumbervalidator_sdk.feature.base_feature import PhoneNumberValidatorBaseFeature
+from phonenumbervalidator_sdk.feature.ratelimit_feature import PhoneNumberValidatorRatelimitFeature
+from phonenumbervalidator_sdk.feature.retry_feature import PhoneNumberValidatorRetryFeature
 from phonenumbervalidator_sdk.feature.test_feature import PhoneNumberValidatorTestFeature
+from phonenumbervalidator_sdk.feature.timeout_feature import PhoneNumberValidatorTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: PhoneNumberValidatorBaseFeature(),
+    "ratelimit": lambda: PhoneNumberValidatorRatelimitFeature(),
+    "retry": lambda: PhoneNumberValidatorRetryFeature(),
     "test": lambda: PhoneNumberValidatorTestFeature(),
+    "timeout": lambda: PhoneNumberValidatorTimeoutFeature(),
 }
 
 

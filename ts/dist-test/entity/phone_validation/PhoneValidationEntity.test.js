@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.PHONE_NUMBER_VALIDATOR_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'phone_validation.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'phone_validation.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "carrier", "req": false, "short": "Name of the carrier/operator", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "country_code", "req": false, "short": "ISO country code", "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "country_name", "req": false, "short": "Name of the country", "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "country_prefix", "req": false, "short": "Country dialing prefix", "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "international_format", "req": false, "short": "Phone number in international format", "type": "`$STRING`", "index$": 4 }, { "active": true, "name": "line_type", "req": false, "short": "Type of phone line (mobile, landline, etc.)", "type": "`$STRING`", "index$": 5 }, { "active": true, "name": "local_format", "req": false, "short": "Phone number in local format", "type": "`$STRING`", "index$": 6 }, { "active": true, "name": "number", "req": false, "short": "The original phone number", "type": "`$STRING`", "index$": 7 }, { "active": true, "name": "valid", "req": false, "short": "Whether the phone number is valid", "type": "`$BOOLEAN`", "index$": 8 }], "name": "phone_validation", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "header": [{ "active": true, "example": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm", "kind": "header", "name": "apikey", "orig": "apikey", "reqd": true, "type": "`$STRING`" }], "params": [{ "active": true, "example": "01613950781", "kind": "param", "name": "phone_number", "orig": "phone_number", "reqd": true, "type": "`$STRING`", "index$": 0 }], "query": [{ "active": true, "example": "BD", "kind": "query", "name": "country_code", "orig": "country_code", "reqd": false, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /validate/{phone_number}", "json": "{\"operationId\":\"validatePhoneNumber\",\"parameters\":[{\"description\":\"The phone number to validate\",\"example\":\"01613950781\",\"in\":\"path\",\"name\":\"phone_number\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"API key for authentication\",\"example\":\"num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm\",\"in\":\"header\",\"name\":\"apikey\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Two-letter ISO country code to help with validation\",\"example\":\"BD\",\"in\":\"query\",\"name\":\"country_code\",\"required\":false,\"schema\":{\"pattern\":\"^[A-Z]{2}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"carrier\":\"Grameenphone\",\"country_code\":\"BD\",\"country_name\":\"Bangladesh\",\"country_prefix\":\"+880\",\"international_format\":\"+8801613950781\",\"line_type\":\"mobile\",\"local_format\":\"01613950781\",\"number\":\"01613950781\",\"valid\":true},\"schema\":{\"properties\":{\"carrier\":{\"description\":\"Name of the carrier/operator\",\"type\":\"string\"},\"country_code\":{\"description\":\"ISO country code\",\"type\":\"string\"},\"country_name\":{\"description\":\"Name of the country\",\"type\":\"string\"},\"country_prefix\":{\"description\":\"Country dialing prefix\",\"type\":\"string\"},\"international_format\":{\"description\":\"Phone number in international format\",\"type\":\"string\"},\"line_type\":{\"description\":\"Type of phone line (mobile, landline, etc.)\",\"type\":\"string\"},\"local_format\":{\"description\":\"Phone number in local format\",\"type\":\"string\"},\"number\":{\"description\":\"The original phone number\",\"type\":\"string\"},\"valid\":{\"description\":\"Whether the phone number is valid\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful validation response\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid phone number format\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - Invalid or missing API key\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Too many requests - Rate limit exceeded\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for authentication. Obtain from https://api.numlookupapi.com\",\"in\":\"header\",\"name\":\"apikey\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/validate/{phone_number}", "segments": [{ "lit": "validate" }, { "var": "phone_number" }], "select": { "exist": ["apikey", "country_code", "phone_number"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [["validate"]] }, "key$": "phone_validation", "name__orig": "phone_validation", "Name": "PhoneValidation", "name_": "phone_validation", "name-": "phone-validation", "NAME": "PHONE_VALIDATION", "index$": 0 }, { "active": true, "entity": "phone_validation", "key$": "BasicPhoneValidationFlow", "kind": "basic", "name": "BasicPhoneValidationFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "phone_validation_ref01", "srcdatavar": "phone_validation_ref01_data", "suffix": "_dt0" }, "match": { "id": "phone_validation01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-phone_validation_ref01" } }], "index$": 0 }] }, 'PhoneValidation');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -100,12 +98,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID': idmap,
         'PHONE_NUMBER_VALIDATOR_TEST_LIVE': 'FALSE',
@@ -114,7 +106,13 @@ function basicSetup(extra) {
     });
     idmap = env['PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID'];
     const live = 'TRUE' === env.PHONE_NUMBER_VALIDATOR_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['PHONE_NUMBER_VALIDATOR_TEST_PHONE_VALIDATION_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.PhoneNumberValidatorSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -127,7 +125,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -139,7 +138,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.PHONE_NUMBER_VALIDATOR_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;
