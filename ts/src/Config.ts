@@ -123,6 +123,7 @@ class Config {
 
     auth: {
       prefix: '',
+      name: 'apikey',
     },
 
     headers: {
@@ -131,9 +132,9 @@ class Config {
 
     entity: {
       
-      phone_validation: {
-      },
-
+        phone_validation: {
+        },
+  
     }
   }
 

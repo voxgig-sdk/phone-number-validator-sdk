@@ -89,6 +89,7 @@ module PhoneNumberValidatorConfig
         "base" => "https://api.numlookupapi.com/v1",
         "auth" => {
           "prefix" => "",
+          "name" => "apikey",
         },
         "headers" => {
           "content-type" => "application/json",

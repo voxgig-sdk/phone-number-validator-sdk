@@ -3,7 +3,7 @@
 from __future__ import annotations
 from phonenumbervalidator_sdk.utility.voxgig_struct import voxgig_struct as vs
 
-HEADER_AUTH = "authorization"
+HEADER_AUTH = "apikey"
 OPTION_APIKEY = "apikey"
 NOT_FOUND = "__NOTFOUND__"
 

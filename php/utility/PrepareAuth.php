@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 class PhoneNumberValidatorPrepareAuth
 {
-    private const HEADER_AUTH = 'authorization';
+    private const HEADER_AUTH = 'apikey';
     private const OPTION_APIKEY = 'apikey';
     private const NOT_FOUND = '__NOTFOUND__';
 

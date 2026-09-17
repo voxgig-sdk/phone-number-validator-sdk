@@ -81,6 +81,7 @@ func MakeConfig() map[string]any {
 			"base": "https://api.numlookupapi.com/v1",
 			"auth": map[string]any{
 				"prefix": "",
+				"name": "apikey",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",
