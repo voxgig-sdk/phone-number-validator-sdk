@@ -95,48 +95,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "carrier",
-						"short": "Name of the carrier/operator",
+						"title": "Carrier",
 						"type": "`$STRING`",
+						"short": "Name of the carrier/operator",
 					},
 					map[string]any{
 						"name": "country_code",
-						"short": "ISO country code",
+						"title": "Country Code",
 						"type": "`$STRING`",
+						"short": "ISO country code",
 					},
 					map[string]any{
 						"name": "country_name",
-						"short": "Name of the country",
+						"title": "Country Name",
 						"type": "`$STRING`",
+						"short": "Name of the country",
 					},
 					map[string]any{
 						"name": "country_prefix",
-						"short": "Country dialing prefix",
+						"title": "Country Prefix",
 						"type": "`$STRING`",
+						"short": "Country dialing prefix",
 					},
 					map[string]any{
 						"name": "international_format",
-						"short": "Phone number in international format",
+						"title": "International Format",
 						"type": "`$STRING`",
+						"short": "Phone number in international format",
 					},
 					map[string]any{
 						"name": "line_type",
-						"short": "Type of phone line (mobile, landline, etc.)",
+						"title": "Line Type",
 						"type": "`$STRING`",
+						"short": "Type of phone line (mobile, landline, etc.)",
 					},
 					map[string]any{
 						"name": "local_format",
-						"short": "Phone number in local format",
+						"title": "Local Format",
 						"type": "`$STRING`",
+						"short": "Phone number in local format",
 					},
 					map[string]any{
 						"name": "number",
-						"short": "The original phone number",
+						"title": "Number",
 						"type": "`$STRING`",
+						"short": "The original phone number",
 					},
 					map[string]any{
 						"name": "valid",
-						"short": "Whether the phone number is valid",
+						"title": "Valid",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the phone number is valid",
 					},
 				},
 				"name": "phone_validation",
@@ -146,37 +155,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"example": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
-											"kind": "header",
-											"name": "apikey",
-											"orig": "apikey",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "01613950781",
-											"kind": "param",
-											"name": "phone_number",
-											"orig": "phone_number",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "BD",
-											"kind": "query",
-											"name": "country_code",
-											"orig": "country_code",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/validate/{phone_number}",
@@ -188,6 +166,46 @@ func MakeConfig() map[string]any {
 										"var": "phone_number",
 									},
 								},
+								"parts": []any{
+									"validate",
+									"{phone_number}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "apikey",
+											"orig": "apikey",
+											"type": "`$STRING`",
+											"kind": "header",
+											"reqd": true,
+											"example": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "phone_number",
+											"orig": "phone_number",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "01613950781",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "country_code",
+											"orig": "country_code",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "BD",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"apikey",
@@ -195,24 +213,12 @@ func MakeConfig() map[string]any {
 										"phone_number",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"validate",
-									"{phone_number}",
-								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"validate",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 		},

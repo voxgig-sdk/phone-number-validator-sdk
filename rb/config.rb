@@ -103,48 +103,57 @@ module PhoneNumberValidatorConfig
           "fields" => [
             {
               "name" => "carrier",
-              "short" => "Name of the carrier/operator",
+              "title" => "Carrier",
               "type" => "`$STRING`",
+              "short" => "Name of the carrier/operator",
             },
             {
               "name" => "country_code",
-              "short" => "ISO country code",
+              "title" => "Country Code",
               "type" => "`$STRING`",
+              "short" => "ISO country code",
             },
             {
               "name" => "country_name",
-              "short" => "Name of the country",
+              "title" => "Country Name",
               "type" => "`$STRING`",
+              "short" => "Name of the country",
             },
             {
               "name" => "country_prefix",
-              "short" => "Country dialing prefix",
+              "title" => "Country Prefix",
               "type" => "`$STRING`",
+              "short" => "Country dialing prefix",
             },
             {
               "name" => "international_format",
-              "short" => "Phone number in international format",
+              "title" => "International Format",
               "type" => "`$STRING`",
+              "short" => "Phone number in international format",
             },
             {
               "name" => "line_type",
-              "short" => "Type of phone line (mobile, landline, etc.)",
+              "title" => "Line Type",
               "type" => "`$STRING`",
+              "short" => "Type of phone line (mobile, landline, etc.)",
             },
             {
               "name" => "local_format",
-              "short" => "Phone number in local format",
+              "title" => "Local Format",
               "type" => "`$STRING`",
+              "short" => "Phone number in local format",
             },
             {
               "name" => "number",
-              "short" => "The original phone number",
+              "title" => "Number",
               "type" => "`$STRING`",
+              "short" => "The original phone number",
             },
             {
               "name" => "valid",
-              "short" => "Whether the phone number is valid",
+              "title" => "Valid",
               "type" => "`$BOOLEAN`",
+              "short" => "Whether the phone number is valid",
             },
           ],
           "name" => "phone_validation",
@@ -154,37 +163,6 @@ module PhoneNumberValidatorConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "header" => [
-                      {
-                        "example" => "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
-                        "kind" => "header",
-                        "name" => "apikey",
-                        "orig" => "apikey",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "params" => [
-                      {
-                        "example" => "01613950781",
-                        "kind" => "param",
-                        "name" => "phone_number",
-                        "orig" => "phone_number",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "example" => "BD",
-                        "kind" => "query",
-                        "name" => "country_code",
-                        "orig" => "country_code",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/validate/{phone_number}",
@@ -196,6 +174,46 @@ module PhoneNumberValidatorConfig
                       "var" => "phone_number",
                     },
                   ],
+                  "parts" => [
+                    "validate",
+                    "{phone_number}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "header" => [
+                      {
+                        "name" => "apikey",
+                        "orig" => "apikey",
+                        "type" => "`$STRING`",
+                        "kind" => "header",
+                        "reqd" => true,
+                        "example" => "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
+                      },
+                    ],
+                    "params" => [
+                      {
+                        "name" => "phone_number",
+                        "orig" => "phone_number",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                        "example" => "01613950781",
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "country_code",
+                        "orig" => "country_code",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "BD",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "apikey",
@@ -203,24 +221,12 @@ module PhoneNumberValidatorConfig
                       "phone_number",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "validate",
-                    "{phone_number}",
-                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "validate",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
       },

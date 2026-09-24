@@ -62,7 +62,7 @@ def phone_validation_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["phone_validation01", "phone_validation02", "phone_validation03", "validate01", "validate02", "validate03"],
+    ["phone_validation01", "phone_validation02", "phone_validation03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

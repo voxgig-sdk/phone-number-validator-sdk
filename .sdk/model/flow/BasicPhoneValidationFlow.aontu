@@ -1,0 +1,32 @@
+# BasicPhoneValidationFlow
+
+main: kit: flow: BasicPhoneValidationFlow:
+{
+  entity: "phone_validation",
+  kind: "basic",
+  name: "BasicPhoneValidationFlow",
+  step: [
+    {
+      i: {
+        ref: "phone_validation_ref01",
+        srcdatavar: "phone_validation_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "phone_validation01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-phone_validation_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPhoneValidationFlow"
+}

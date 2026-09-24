@@ -70,7 +70,7 @@ function phone_validation_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["phone_validation01", "phone_validation02", "phone_validation03", "validate01", "validate02", "validate03"] as $k) {
+    foreach (["phone_validation01", "phone_validation02", "phone_validation03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

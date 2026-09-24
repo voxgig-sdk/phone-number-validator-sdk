@@ -35,8 +35,6 @@ $client = new PhoneNumberValidatorSDK([
 
 ### 3. Load a phonevalidation
 
-PhoneValidation is nested under phone_number, so provide the `phone_number`.
-
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the PhoneValidation record (throws on error).

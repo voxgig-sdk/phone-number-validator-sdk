@@ -34,8 +34,6 @@ client = PhoneNumberValidatorSDK.new({
 
 ### 3. Load a phonevalidation
 
-PhoneValidation is nested under phone_number, so provide the `phone_number`.
-
 ```ruby
 begin
   # load returns the ENTITY — call data_get for the PhoneValidation record (raises on error).

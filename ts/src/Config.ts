@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -144,48 +137,57 @@ class Config {
       "fields": [
         {
           "name": "carrier",
-          "short": "Name of the carrier/operator",
-          "type": "`$STRING`"
+          "title": "Carrier",
+          "type": "`$STRING`",
+          "short": "Name of the carrier/operator"
         },
         {
           "name": "country_code",
-          "short": "ISO country code",
-          "type": "`$STRING`"
+          "title": "Country Code",
+          "type": "`$STRING`",
+          "short": "ISO country code"
         },
         {
           "name": "country_name",
-          "short": "Name of the country",
-          "type": "`$STRING`"
+          "title": "Country Name",
+          "type": "`$STRING`",
+          "short": "Name of the country"
         },
         {
           "name": "country_prefix",
-          "short": "Country dialing prefix",
-          "type": "`$STRING`"
+          "title": "Country Prefix",
+          "type": "`$STRING`",
+          "short": "Country dialing prefix"
         },
         {
           "name": "international_format",
-          "short": "Phone number in international format",
-          "type": "`$STRING`"
+          "title": "International Format",
+          "type": "`$STRING`",
+          "short": "Phone number in international format"
         },
         {
           "name": "line_type",
-          "short": "Type of phone line (mobile, landline, etc.)",
-          "type": "`$STRING`"
+          "title": "Line Type",
+          "type": "`$STRING`",
+          "short": "Type of phone line (mobile, landline, etc.)"
         },
         {
           "name": "local_format",
-          "short": "Phone number in local format",
-          "type": "`$STRING`"
+          "title": "Local Format",
+          "type": "`$STRING`",
+          "short": "Phone number in local format"
         },
         {
           "name": "number",
-          "short": "The original phone number",
-          "type": "`$STRING`"
+          "title": "Number",
+          "type": "`$STRING`",
+          "short": "The original phone number"
         },
         {
           "name": "valid",
-          "short": "Whether the phone number is valid",
-          "type": "`$BOOLEAN`"
+          "title": "Valid",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the phone number is valid"
         }
       ],
       "name": "phone_validation",
@@ -195,37 +197,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "header": [
-                  {
-                    "example": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
-                    "kind": "header",
-                    "name": "apikey",
-                    "orig": "apikey",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "params": [
-                  {
-                    "example": "01613950781",
-                    "kind": "param",
-                    "name": "phone_number",
-                    "orig": "phone_number",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "example": "BD",
-                    "kind": "query",
-                    "name": "country_code",
-                    "orig": "country_code",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/validate/{phone_number}",
@@ -237,31 +208,59 @@ class Config {
                   "var": "phone_number"
                 }
               ],
+              "parts": [
+                "validate",
+                "{phone_number}"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "header": [
+                  {
+                    "name": "apikey",
+                    "orig": "apikey",
+                    "type": "`$STRING`",
+                    "kind": "header",
+                    "reqd": true,
+                    "example": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm"
+                  }
+                ],
+                "params": [
+                  {
+                    "name": "phone_number",
+                    "orig": "phone_number",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "01613950781"
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "country_code",
+                    "orig": "country_code",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "BD"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "apikey",
                   "country_code",
                   "phone_number"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "validate",
-                "{phone_number}"
-              ]
+              }
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "validate"
-          ]
-        ]
+        "ancestors": []
       }
     }
   }

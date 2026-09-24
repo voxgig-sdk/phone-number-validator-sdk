@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -125,11 +125,8 @@ const client = new PhoneNumberValidatorSDK({
   apikey: process.env.PHONE_NUMBER_VALIDATOR_APIKEY,
 })
 
-
-// Load a specific phonevalidation (returns a PhoneValidation)
-const phonevalidation = await client.PhoneValidation().load({
-  phone_number: 'example_phone_number',
-})
+// Load phonevalidation data (returns a PhoneValidation)
+const phonevalidation = await client.PhoneValidation().load()
 console.log(phonevalidation)
 ```
 
@@ -219,11 +216,8 @@ client := sdk.NewPhoneNumberValidatorSDK(map[string]any{
     "apikey": os.Getenv("PHONE_NUMBER_VALIDATOR_APIKEY"),
 })
 
-
-// Load a specific phonevalidation
-phoneValidation, err := client.PhoneValidation(nil).Load(
-    map[string]any{"phone_number": "example_phone_number"}, nil,
-)
+// Load phonevalidation data
+phoneValidation, err := client.PhoneValidation(nil).Load(map[string]any{"phone_number": "example_phone_number"}, nil)
 if err != nil {
     panic(err)
 }

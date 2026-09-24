@@ -24,77 +24,152 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "phone_validation": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "carrier",
-              "req": false,
-              "short": "Name of the carrier/operator",
-              "type": "`$STRING`"
+          "fields": {
+            "carrier": {
+              "a": true,
+              "h": "Carrier",
+              "n": "carrier",
+              "r": false,
+              "sh": "Name of the carrier/operator",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "country_code",
-              "req": false,
-              "short": "ISO country code",
-              "type": "`$STRING`"
+            "country_code": {
+              "a": true,
+              "h": "Country Code",
+              "n": "country_code",
+              "r": false,
+              "sh": "ISO country code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "country_name",
-              "req": false,
-              "short": "Name of the country",
-              "type": "`$STRING`"
+            "country_name": {
+              "a": true,
+              "h": "Country Name",
+              "n": "country_name",
+              "r": false,
+              "sh": "Name of the country",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "country_prefix",
-              "req": false,
-              "short": "Country dialing prefix",
-              "type": "`$STRING`"
+            "country_prefix": {
+              "a": true,
+              "h": "Country Prefix",
+              "n": "country_prefix",
+              "r": false,
+              "sh": "Country dialing prefix",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "international_format",
-              "req": false,
-              "short": "Phone number in international format",
-              "type": "`$STRING`"
+            "international_format": {
+              "a": true,
+              "h": "International Format",
+              "n": "international_format",
+              "r": false,
+              "sh": "Phone number in international format",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "line_type",
-              "req": false,
-              "short": "Type of phone line (mobile, landline, etc.)",
-              "type": "`$STRING`"
+            "line_type": {
+              "a": true,
+              "h": "Line Type",
+              "n": "line_type",
+              "r": false,
+              "sh": "Type of phone line (mobile, landline, etc.)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "local_format",
-              "req": false,
-              "short": "Phone number in local format",
-              "type": "`$STRING`"
+            "local_format": {
+              "a": true,
+              "h": "Local Format",
+              "n": "local_format",
+              "r": false,
+              "sh": "Phone number in local format",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "number",
-              "req": false,
-              "short": "The original phone number",
-              "type": "`$STRING`"
+            "number": {
+              "a": true,
+              "h": "Number",
+              "n": "number",
+              "r": false,
+              "sh": "The original phone number",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "valid",
-              "req": false,
-              "short": "Whether the phone number is valid",
-              "type": "`$BOOLEAN`"
+            "valid": {
+              "a": true,
+              "h": "Valid",
+              "n": "valid",
+              "r": false,
+              "sh": "Whether the phone number is valid",
+              "t": "`$BOOLEAN`"
             }
-          ],
+          },
           "name": "phone_validation",
           "op": {
             "load": {
@@ -102,52 +177,59 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /validate/{phone_number}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "header": [
                       {
-                        "active": true,
-                        "example": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
-                        "kind": "header",
-                        "name": "apikey",
-                        "orig": "apikey",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm",
+                        "k": "header",
+                        "n": "apikey",
+                        "or": "apikey",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "params": [
                       {
-                        "active": true,
-                        "example": "01613950781",
-                        "kind": "param",
-                        "name": "phone_number",
-                        "orig": "phone_number",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "01613950781",
+                        "k": "param",
+                        "n": "phone_number",
+                        "or": "phone_number",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "BD",
-                        "kind": "query",
-                        "name": "country_code",
-                        "orig": "country_code",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "BD",
+                        "k": "query",
+                        "n": "country_code",
+                        "or": "country_code",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /validate/{phone_number}",
-                    "json": "{\"operationId\":\"validatePhoneNumber\",\"parameters\":[{\"description\":\"The phone number to validate\",\"example\":\"01613950781\",\"in\":\"path\",\"name\":\"phone_number\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"API key for authentication\",\"example\":\"num_live_Nf2vjeM19tHdi42qQ2LaVVMg2IGk1ReU2BYBKnvm\",\"in\":\"header\",\"name\":\"apikey\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Two-letter ISO country code to help with validation\",\"example\":\"BD\",\"in\":\"query\",\"name\":\"country_code\",\"required\":false,\"schema\":{\"pattern\":\"^[A-Z]{2}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"carrier\":\"Grameenphone\",\"country_code\":\"BD\",\"country_name\":\"Bangladesh\",\"country_prefix\":\"+880\",\"international_format\":\"+8801613950781\",\"line_type\":\"mobile\",\"local_format\":\"01613950781\",\"number\":\"01613950781\",\"valid\":true},\"schema\":{\"properties\":{\"carrier\":{\"description\":\"Name of the carrier/operator\",\"type\":\"string\"},\"country_code\":{\"description\":\"ISO country code\",\"type\":\"string\"},\"country_name\":{\"description\":\"Name of the country\",\"type\":\"string\"},\"country_prefix\":{\"description\":\"Country dialing prefix\",\"type\":\"string\"},\"international_format\":{\"description\":\"Phone number in international format\",\"type\":\"string\"},\"line_type\":{\"description\":\"Type of phone line (mobile, landline, etc.)\",\"type\":\"string\"},\"local_format\":{\"description\":\"Phone number in local format\",\"type\":\"string\"},\"number\":{\"description\":\"The original phone number\",\"type\":\"string\"},\"valid\":{\"description\":\"Whether the phone number is valid\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful validation response\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid phone number format\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - Invalid or missing API key\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Too many requests - Rate limit exceeded\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for authentication. Obtain from https://api.numlookupapi.com\",\"in\":\"header\",\"name\":\"apikey\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/validate/{phone_number}",
+                  "q": {
+                    "exist": [
+                      "apikey",
+                      "country_code",
+                      "phone_number"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/validate/{phone_number}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "validate"
                     },
@@ -155,14 +237,7 @@
                       "var": "phone_number"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "apikey",
-                      "country_code",
-                      "phone_number"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -171,11 +246,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "validate"
-              ]
-            ]
+            "ancestors": []
           }
         }
       },
@@ -595,19 +666,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "phone_validation_ref01",
                 "srcdatavar": "phone_validation_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "phone_validation01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

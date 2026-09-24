@@ -41,7 +41,6 @@ client = PhoneNumberValidatorSDK({
 
 ### 3. Load a phonevalidation
 
-PhoneValidation is nested under phone_number, so provide the `phone_number`.
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python

@@ -37,8 +37,6 @@ local client = sdk.new({
 
 ### 3. Load a phonevalidation
 
-PhoneValidation is nested under phone_number, so provide the `phone_number`.
-
 ```lua
 local phonevalidation, err = client:PhoneValidation():load({ phone_number = "example_phone_number" })
 if err then error(err) end

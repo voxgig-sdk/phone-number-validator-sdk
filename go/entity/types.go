@@ -1,7 +1,7 @@
 // Typed models for the PhoneNumberValidator SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,15 +14,6 @@ import (
 
 // PhoneValidation is the typed data model for the phone_validation entity.
 type PhoneValidation struct {
-	Carrier *string `json:"carrier,omitempty"`
-	CountryCode *string `json:"country_code,omitempty"`
-	CountryName *string `json:"country_name,omitempty"`
-	CountryPrefix *string `json:"country_prefix,omitempty"`
-	InternationalFormat *string `json:"international_format,omitempty"`
-	LineType *string `json:"line_type,omitempty"`
-	LocalFormat *string `json:"local_format,omitempty"`
-	Number *string `json:"number,omitempty"`
-	Valid *bool `json:"valid,omitempty"`
 }
 
 // PhoneValidationLoadMatch is the typed request payload for PhoneValidation.LoadTyped.

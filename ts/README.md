@@ -37,14 +37,11 @@ const client = new PhoneNumberValidatorSDK({
 
 ### 3. Load a phonevalidation
 
-PhoneValidation is nested under phone_number, so provide the `phone_number`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const phonevalidation = await client.PhoneValidation().load({
-    phone_number: 'example_phone_number',
-  })
+  const phonevalidation = await client.PhoneValidation().load({ phone_number: 'example_phone_number' })
   console.log(phonevalidation)
 } catch (err) {
   console.error('load failed:', err)
