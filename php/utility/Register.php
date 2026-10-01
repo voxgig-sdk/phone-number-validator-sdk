@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 PhoneNumberValidatorUtility::setRegistrar(function (PhoneNumberValidatorUtility $u): void {
     $u->clean = [PhoneNumberValidatorClean::class, 'call'];
+    $u->clean_add = [PhoneNumberValidatorClean::class, 'add'];
+    $u->clean_explain = [PhoneNumberValidatorDone::class, 'clean_explain'];
     $u->done = [PhoneNumberValidatorDone::class, 'call'];
     $u->make_error = [PhoneNumberValidatorMakeError::class, 'call'];
     $u->feature_add = [PhoneNumberValidatorFeatureAdd::class, 'call'];

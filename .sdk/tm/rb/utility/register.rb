@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 PhoneNumberValidatorUtility.registrar = ->(u) {
   u.clean = PhoneNumberValidatorUtilities::Clean
+  u.clean_add = PhoneNumberValidatorUtilities::CleanAdd
+  u.clean_explain = PhoneNumberValidatorUtilities::CleanExplain
   u.done = PhoneNumberValidatorUtilities::Done
   u.make_error = PhoneNumberValidatorUtilities::MakeError
   u.feature_add = PhoneNumberValidatorUtilities::FeatureAdd

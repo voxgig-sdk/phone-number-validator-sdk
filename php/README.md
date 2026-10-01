@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/phone-number-validator-sdk/releases](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/phone-number-validator-sdk
+composer config repositories.phone-number-validator-sdk path ./phone-number-validator-sdk/php
+composer require voxgig-sdk/phone-number-validator-sdk:@dev
+```
 
 
 ## Tutorial: your first API call
