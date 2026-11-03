@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type PhoneNumberValidatorEntity = core.PhoneNumberValidatorEntity
+type PhoneNumberValidatorEntityBase = core.PhoneNumberValidatorEntityBase
+
+// Deprecated: use PhoneNumberValidatorEntityBase.
+type PhoneNumberValidatorEntity = core.PhoneNumberValidatorEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,7 +46,7 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewPhoneValidationEntityFunc = func(client *core.PhoneNumberValidatorSDK, entopts map[string]any) core.PhoneNumberValidatorEntity {
+	core.NewPhoneValidationEntityFunc = func(client *core.PhoneNumberValidatorSDK, entopts map[string]any) core.PhoneNumberValidatorEntityBase {
 		return entity.NewPhoneValidationEntity(client, entopts)
 	}
 }

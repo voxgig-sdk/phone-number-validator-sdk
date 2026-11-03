@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/phone-number-validator-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/phone-number-validator-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/phone-number-validator-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -30,14 +30,15 @@ go mod edit -replace github.com/voxgig-sdk/phone-number-validator-sdk/go=../phon
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key in the `apikey` header.
 
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -53,12 +54,12 @@ func main() {
         "apikey": os.Getenv("PHONE_NUMBER_VALIDATOR_APIKEY"),
     })
 
-    // Load a single phoneValidation — the value is the loaded record.
+    // Load a single phoneValidation — the value is the entity; Data() reads its record.
     phoneValidation, err := client.PhoneValidation(nil).Load(map[string]any{"phone_number": "example_phone_number"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(phoneValidation)
+    fmt.Println(phoneValidation.(sdk.Entity).Data())
 }
 ```
 
@@ -144,7 +145,7 @@ phoneValidation, err := client.PhoneValidation(nil).Load(
 if err != nil {
     panic(err)
 }
-fmt.Println(phoneValidation) // the returned mock data
+fmt.Println(phoneValidation.(sdk.Entity).Data()) // the entity's mock record
 ```
 
 ### Use a custom fetch function
@@ -223,15 +224,15 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `PhoneValidation` | `(data map[string]any) PhoneNumberValidatorEntity` | Create a PhoneValidation entity instance. |
+| `PhoneValidation` | `(data map[string]any) PhoneNumberValidatorEntityBase` | Create a PhoneValidation entity instance. |
 
-### Entity interface (PhoneNumberValidatorEntity)
+### Entity interface (PhoneNumberValidatorEntityBase)
 
-All entities implement the `PhoneNumberValidatorEntity` interface.
+All entities implement the `PhoneNumberValidatorEntityBase` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -239,20 +240,20 @@ All entities implement the `PhoneNumberValidatorEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` | the entity record (`map[string]any`) |
+| `Load` | the entity, whose `Data()` reads its record (`map[string]any`) |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    phoneValidation, err := client.PhoneValidation(nil).Load(nil, nil)
+    phoneValidation, err := client.PhoneValidation(nil).Load(map[string]any{"phone_number": "example"}, nil)
     if err != nil { /* handle */ }
-    // phoneValidation is the returned record
+    // phoneValidation is the entity; phoneValidation.(sdk.Entity).Data() reads its record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -313,7 +314,7 @@ phoneValidation, err := client.PhoneValidation(nil).Load(map[string]any{"phone_n
 if err != nil {
     panic(err)
 }
-fmt.Println(phoneValidation) // the loaded record
+fmt.Println(phoneValidation.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 ## Features
@@ -450,7 +451,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 

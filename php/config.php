@@ -93,6 +93,7 @@ class PhoneNumberValidatorConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -225,15 +226,19 @@ class PhoneNumberValidatorConfig
                         'type' => '`$STRING`',
                         'kind' => 'query',
                         'example' => 'BD',
+                        'field' => true,
                       ],
                     ],
                   ],
                   'select' => [
                     'exist' => [
                       'apikey',
-                      'country_code',
                       'phone_number',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

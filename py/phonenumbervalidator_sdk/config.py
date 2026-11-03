@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -228,15 +229,19 @@ def make_config():
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "BD",
+                      "field": True,
                     },
                   ],
                 },
                 "select": {
                   "exist": [
                     "apikey",
-                    "country_code",
                     "phone_number",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],

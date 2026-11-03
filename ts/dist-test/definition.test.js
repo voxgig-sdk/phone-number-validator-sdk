@@ -26,8 +26,18 @@ const PLAN = [
             "country_code": "BD"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country_code"
+        ],
+        "queryArgs": [
+            {
+                "name": "country_code",
+                "wire": "country_code"
+            }
         ],
         "auth": [
             [

@@ -75,7 +75,7 @@ func runOp(client *sdk.PhoneNumberValidatorSDK, op string, query *eng.Value, ent
 
 // entityFor dispatches on the lowercase entity name. The generator
 // emits one `case "<name>":` per entity defined in the SDK model.
-func entityFor(client *sdk.PhoneNumberValidatorSDK, name string) (sdk.PhoneNumberValidatorEntity, error) {
+func entityFor(client *sdk.PhoneNumberValidatorSDK, name string) (sdk.PhoneNumberValidatorEntityBase, error) {
 	switch strings.ToLower(name) {
 	case "phone_validation":
 		return client.PhoneValidation(nil), nil

@@ -12,5 +12,5 @@ var NewTestFeatureFunc func() Feature
 
 var NewTimeoutFeatureFunc func() Feature
 
-var NewPhoneValidationEntityFunc func(client *PhoneNumberValidatorSDK, entopts map[string]any) PhoneNumberValidatorEntity
+var NewPhoneValidationEntityFunc func(client *PhoneNumberValidatorSDK, entopts map[string]any) PhoneNumberValidatorEntityBase
 

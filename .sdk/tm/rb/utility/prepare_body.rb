@@ -1,6 +1,9 @@
 # PhoneNumberValidator SDK utility: prepare_body
+require_relative 'media'
 module PhoneNumberValidatorUtilities
   PrepareBody = ->(ctx) {
-    ctx.op.input == "data" ? ctx.utility.transform_request.call(ctx) : nil
+    return nil unless ctx.op.input == "data"
+    return PhoneNumberValidatorUtilities.raw_body(ctx.reqdata) if PhoneNumberValidatorUtilities.raw_request?(ctx.point)
+    ctx.utility.transform_request.call(ctx)
   }
 end

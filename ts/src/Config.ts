@@ -102,6 +102,7 @@ class Config {
       },
       "optspec": {
         "clearTimer": "`$FUNCTION`",
+        "now": "`$FUNCTION`",
         "setTimer": "`$FUNCTION`"
       },
       "strict": false,
@@ -244,16 +245,20 @@ class Config {
                     "orig": "country_code",
                     "type": "`$STRING`",
                     "kind": "query",
-                    "example": "BD"
+                    "example": "BD",
+                    "field": true
                   }
                 ]
               },
               "select": {
                 "exist": [
                   "apikey",
-                  "country_code",
                   "phone_number"
                 ]
+              },
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
